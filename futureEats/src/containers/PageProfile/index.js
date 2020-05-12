@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from "react-redux"
 import { ProfileWrapper, ProfileHeader, ProfileText, ProfileInfos, EditIcon, ProfileInfosWrapper, 
 ProfileAdressInfoWrapper, ProfileTextSecond, ProfileAdressInfo, HistPedidosCard, PedidoPlaceText,
-PedidoDateText, SubtotalText, HistPedidosWrapper} from './style';
+PedidoDateText, SubtotalText, HistPedidosWrapper, Footer} from './style';
+import { push } from "connected-react-router";
+import  {routes}  from '../Router'
 
-class PageProfile extends React.Component {
+export class PageProfile extends React.Component {
 
     render() {
+        const { goToEditProfile } = this.props
         return (
             <ProfileWrapper>
                 <ProfileHeader>
@@ -18,7 +21,7 @@ class PageProfile extends React.Component {
                         <ProfileText>bruna_o@gmail.com</ProfileText>
                         <ProfileText>333.333.333-36</ProfileText>
                     </ProfileInfos>
-                    <EditIcon><i class="material-icons md-36">create</i></EditIcon>
+                    <EditIcon onClick={goToEditProfile}><i class="material-icons md-36">create</i></EditIcon>
                 </ProfileInfosWrapper>
 
                 <ProfileAdressInfoWrapper>
@@ -73,16 +76,29 @@ class PageProfile extends React.Component {
                             Subtotal R$77,00
                         </SubtotalText>            
                     </HistPedidosCard>
+                    <HistPedidosCard>
+                        <PedidoPlaceText>
+                            Bullguer Vila Madalena
+                        </PedidoPlaceText>
+                        <PedidoDateText>
+                            23 outubro 2019
+                        </PedidoDateText>
+                        <SubtotalText>
+                            Subtotal R$77,00
+                        </SubtotalText>            
+                    </HistPedidosCard>
                 </HistPedidosWrapper>
 
-                
+                <Footer>
 
-
-
+                </Footer>
 
             </ProfileWrapper>
         )
     }
 }
+const mapDispatchToProps = dispatch => ({ 
+    goToEditProfile: () => dispatch(push(routes.PageEditProfile)),    
+  })
 
-export default connect(null, null)(PageProfile);
+export default connect(null, mapDispatchToProps)(PageProfile);

@@ -6,11 +6,10 @@ export const ProfileWrapper = styled.div`
     flex-direction: column;
     justify-content: center; 
 `
-
 export const ProfileHeader = styled.div`
 height: 44px;
 width: 100%;
-box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
+border-bottom: #b8b8b8 1px solid;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -26,7 +25,8 @@ export const ProfileInfos = styled.div`
     width: 100%;
     height: fit-content; 
 `
-export const EditIcon = styled.div `
+export const EditIcon = styled.button `
+
 `
 export const ProfileInfosWrapper = styled.div `
     display: flex;
@@ -66,4 +66,17 @@ export const HistPedidosWrapper = styled.div `
     display: grid;
     grid-gap: 15px;
     padding: 16px;
+`
+export const Footer = styled.div `
+    height: 56px;
+    width: 100%;
+    border-top: #b8b8b8 1px solid;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+`
+export const EditProfileInputsWrapper = styled.div `
+    
+    margin: 16px;
 `

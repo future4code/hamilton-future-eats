@@ -9,6 +9,7 @@ export const LoginWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    padding: 0 16px 0 16px;/* acrescentei esse padding lateral */
 `
 
 export const Logo = styled.img`
@@ -24,10 +25,10 @@ export const Entrar = styled(Typography)`
 `
 export const Inputs = styled(TextField)`
     margin-top: 16px;
-    width: 328px;
+    width: 100%;/* mudei pra 100% */
 `
 export const EntrarButton = styled(Button)`
-    width: 328px;
+     width: 100%;/* mudei pra 100% */
     height: 42px;
     border-radius: 2px;
     margin-top: 16px;
