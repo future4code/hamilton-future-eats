@@ -10,6 +10,6 @@ export const AppWrapper = styled.div`
 export const PageWrapper = styled.div`
     border: 1px solid black;
     height: 667px;
-    width: 375px;
+    width: 375px; 
     margin: 0 auto;
 `
