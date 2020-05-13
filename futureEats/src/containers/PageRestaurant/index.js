@@ -3,6 +3,10 @@ import {connect} from "react-redux"
 
 class PageRestaurant extends React.Component{
 
+    componentDidMount() {
+
+    }
+
     render(){
         return(
             <div>
@@ -12,4 +16,12 @@ class PageRestaurant extends React.Component{
     }
 }
 
-export default connect (null, null) (PageRestaurant);
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect (mapStateToProps, mapDispatchToProps) (PageRestaurant);

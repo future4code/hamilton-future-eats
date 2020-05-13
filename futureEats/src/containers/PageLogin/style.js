@@ -33,7 +33,7 @@ export const EntrarButton = styled(Button)`
     height: 42px;
     border-radius: 2px;
     margin-top: 16px;
-    color: white;
+    
 `   
 export const Cadastrar = styled(Typography)`
 margin-top: 28px;

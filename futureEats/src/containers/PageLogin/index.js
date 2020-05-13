@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from "../../actions/auth"
+import { login } from "../../actions/user"
 import { connect } from "react-redux"
 import { push } from "connected-react-router"
 import { routes } from "../Router"

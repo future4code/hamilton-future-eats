@@ -39,7 +39,7 @@ export const SaveButton = styled(Button)`
     height: 42px;
     border-radius: 2px;
     margin-top: 16px;
-    color: white;
+    
 `   
 
 

@@ -14,6 +14,6 @@ export const FooterWrapper = styled.div`
     }
 
     svg:nth-child(${props=>props.active}){
-        fill: red;
+        fill: #5cb646;
     }
 `

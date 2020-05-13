@@ -66,16 +66,11 @@ export const HistPedidosWrapper = styled.div `
     display: grid;
     grid-gap: 15px;
     padding: 16px;
+    overflow-y: scroll;
+    height: 335px;
+    
 `
-export const Footer = styled.div `
-    height: 56px;
-    width: 100%;
-    border-top: #b8b8b8 1px solid;
-    position: fixed;
-    bottom: 0;
-    background-color: white;
-    z-index: 1;
-`
+
 export const EditProfileInputsWrapper = styled.div `
     
     margin: 16px;

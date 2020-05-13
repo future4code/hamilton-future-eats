@@ -10,8 +10,10 @@ import PageCart from "../PageCart";
 import PageAddressRegistration from "../PageAddressRegistration";
 import PageError from "../PageError"
 import PageEditProfile from "../PageEditProfile"
+import PageHome from "../PageHome"
 
 export const routes = {
+  home: "/",
   login: "/login",
   signUp: "/signup",
   feed: "/feed",
@@ -27,7 +29,7 @@ function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-
+        <Route exact path={routes.home} component={PageHome} />
         <Route exact path={routes.login} component={PageLogin} />
         <Route exact path={routes.signUp} component={PageSignUp} />
         <Route exact path={routes.feed} component={PageFeed} />

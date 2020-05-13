@@ -42,7 +42,7 @@ export const Address = styled(Typography)`
 `
 
 export const PaymentWrapper = styled.div`
-    min-height: ${({orders}) => (orders ? 'none' : '390px')};
+    min-height: ${({orders}) => (orders ? 'none' : '355px')};
     height: auto;
     width: 100%;
     display: flex;

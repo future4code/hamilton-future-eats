@@ -19,7 +19,7 @@ padding: 12px 0;
 
 export const OrderWrapper = styled.div`
 width: 100%;
-height: ${({orders}) => (orders ? '42' : '220px')};
+height: ${({orders}) => (orders ? '42' : '185px')};
 overflow-y: scroll;
 `
 

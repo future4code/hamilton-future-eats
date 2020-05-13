@@ -1,7 +1,9 @@
 import React from 'react';
+import { addAddress } from '../../actions/user'
 import { connect } from "react-redux"
 import { LoginWrapper, Logo, MyAddress, Inputs, SaveButton, Form } from './style';
 import imgLogo from '../../imgs/logo-future-eats-invert.png';
+
 
 
 export class PageAddressRegistration extends React.Component {
@@ -10,15 +12,14 @@ export class PageAddressRegistration extends React.Component {
         this.state = {
             street: '',
             number: '',
-            complement: '',
             neighbourhood: '',
             city: '',
             state: '',
-            
+            complement: ''
         }
     }
 
-    
+
     handleInputChange = (event) => {
         const { name, value } = event.target
         this.setState({ [name]: value })
@@ -26,9 +27,8 @@ export class PageAddressRegistration extends React.Component {
 
     handleSubmmit = (event) => {
         event.preventDefault();
-        console.log(this.state.form)
-// Aqui vai a action de criar endereço
-        // this.props.createUser(this.state.form)
+               
+       this.props.addAddress(this.state)
     }
 
     render() {
@@ -36,7 +36,7 @@ export class PageAddressRegistration extends React.Component {
 
         return (
             <LoginWrapper>
-                
+
                 <Logo src={imgLogo} />
 
                 <MyAddress>Meu endereço</MyAddress>
@@ -61,7 +61,7 @@ export class PageAddressRegistration extends React.Component {
                         name="number"
                         label="Número"
                         required
-                        type="email"
+                        type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
                         value={number}
@@ -112,7 +112,7 @@ export class PageAddressRegistration extends React.Component {
                     />
 
                     <SaveButton type="submit" color="primary" variant="contained">Salvar</SaveButton>
-{/*Entrar no app - Tela feed*/}
+                    
 
                 </Form>
 
@@ -120,5 +120,7 @@ export class PageAddressRegistration extends React.Component {
         )
     }
 }
-
-export default connect(null, null)(PageAddressRegistration);
+const mapDispatchToProps = dispatch => ({
+    addAddress: (body) => dispatch(addAddress(body))
+})
+export default connect(null, mapDispatchToProps)(PageAddressRegistration);
