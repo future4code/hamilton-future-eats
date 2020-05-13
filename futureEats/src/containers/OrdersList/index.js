@@ -8,16 +8,9 @@ import {
     RestaurantName,
     RestaurantAddress,
     ExpectedTime,
-    OrderCard,
-    OrderImg,
-    OrderName,
-    OrderNumber,
-    OrderDescription,
-    OrderRemove,
-    OrderPrice,
     } from './style';
-import samplePic from '../../imgs/mao-santa-burguer-1531851949973-v-2-900-x-506.png'
 import {getActiveOrder, placeOrder} from '../../actions/orders'
+import OrderCard from '../../components/OrderCard'
 
 
 
@@ -47,15 +40,9 @@ export class OrdersList extends React.Component {
                                 <RestaurantAddress>Vila da Boa Vizinhança, barril</RestaurantAddress>
                                 <ExpectedTime>30 - 45 min</ExpectedTime>
                             </RestaurantInfo>
-                            <OrderCard>
-                                <OrderImg src={samplePic}/>
-                                <OrderName>Churros do Chaves</OrderName>
-                                <OrderNumber><span>1</span></OrderNumber>
-                                <OrderDescription>Churros fresquinho, coberto por uma fina
-                                     e deliciosa camada de chocolete.</OrderDescription>
-                                <OrderPrice>R$7,00</OrderPrice>
-                                <OrderRemove><span>remover</span></OrderRemove>
-                            </OrderCard>
+                        
+                            <OrderCard/>
+
                         </OrderWrapper>
 
                     ) : (
