@@ -45,6 +45,7 @@ export class PageLogin extends React.Component {
             <LoginWrapper>
                 <Logo src={imgLogo} />
                 <Entrar>Entrar</Entrar>
+
                 <Form onSubmit={this.handleSubmit}>
                     <Inputs
                         name="email"
