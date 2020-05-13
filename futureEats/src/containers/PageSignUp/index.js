@@ -1,5 +1,5 @@
 import React from 'react';
-import { signUp } from "../../actions/auth"
+import { signUp } from "../../actions/user"
 import { connect } from "react-redux"
 import { push } from "connected-react-router"
 import { routes } from "../Router"
@@ -40,7 +40,7 @@ export class PageSignUp extends React.Component {
         const { name, email, cpf, password, confirmPassword } = this.state
 
         if (password !== confirmPassword) {
-            alert("Senha não confere");
+            
           } else {
             this.props.signUp(name, email, cpf, password);
             this.props.goToAddress();

@@ -17,6 +17,8 @@ import { CartWrapper,
     ConfirmButton } from './style';
 import Radio from '@material-ui/core/Radio';
 import OrdersList from '../OrdersList';
+import Footer from '../Footer'
+import {setCurrentPage} from "../../actions/page"
 
 
 
@@ -24,8 +26,11 @@ export class PageCart extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: 1,
+            orders: "1",
         }
+    }
+    componentDidMount() {
+        this.props.setCurrentPage(2);
     }
 
     hendleOnClick = (event) => {
@@ -73,12 +78,19 @@ export class PageCart extends React.Component {
                 onClick={this.handleOnClick}
                 >Confirmar
                 </ConfirmButton>
-
+                <Footer/>
             </CartWrapper>
+        
         )
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        
+        setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
 
+    }
+}
 
-export default connect(null, null)(PageCart);
+export default connect(null, mapDispatchToProps)(PageCart);

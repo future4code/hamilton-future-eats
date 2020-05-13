@@ -38,7 +38,7 @@ export const CreateButton = styled(Button)`
     height: 42px;
     border-radius: 2px;
     margin-top: 16px;
-    color: white;
+    
 `   
 export const Icon = styled.div`
     border-bottom: solid 0.1px #bdc3c7;

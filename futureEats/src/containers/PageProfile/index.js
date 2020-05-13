@@ -1,12 +1,21 @@
 import React from 'react';
 import { connect } from "react-redux"
-import { ProfileWrapper, ProfileHeader, ProfileText, ProfileInfos, EditIcon, ProfileInfosWrapper, 
-ProfileAdressInfoWrapper, ProfileTextSecond, ProfileAdressInfo, HistPedidosCard, PedidoPlaceText,
-PedidoDateText, SubtotalText, HistPedidosWrapper, Footer} from './style';
+import {
+    ProfileWrapper, ProfileHeader, ProfileText, ProfileInfos, EditIcon, ProfileInfosWrapper,
+    ProfileAdressInfoWrapper, ProfileTextSecond, ProfileAdressInfo, HistPedidosCard, PedidoPlaceText,
+    PedidoDateText, SubtotalText, HistPedidosWrapper
+} from './style';
 import { push } from "connected-react-router";
-import  {routes}  from '../Router'
+import { routes } from '../Router'
+import Footer from '../Footer'
+import {setCurrentPage} from "../../actions/page"
 
 export class PageProfile extends React.Component {
+
+    componentDidMount() {
+        this.props.setCurrentPage(3);
+    }
+
 
     render() {
         const { goToEditProfile } = this.props
@@ -36,13 +45,13 @@ export class PageProfile extends React.Component {
                     <EditIcon><i class="material-icons">create</i></EditIcon>
                 </ProfileAdressInfoWrapper>
 
-                <ProfileInfosWrapper style={{borderBottom: '1px solid black'}}>
+                <ProfileInfosWrapper style={{ borderBottom: '1px solid black' }}>
                     <ProfileText>
-                    Histórico de pedidos
+                        Histórico de pedidos
                     </ProfileText>
                 </ProfileInfosWrapper>
 
-                <HistPedidosWrapper>                    
+                <HistPedidosWrapper>
                     <HistPedidosCard>
                         <PedidoPlaceText>
                             Bullguer Vila Madalena
@@ -52,7 +61,7 @@ export class PageProfile extends React.Component {
                         </PedidoDateText>
                         <SubtotalText>
                             Subtotal R$67,00
-                        </SubtotalText>            
+                        </SubtotalText>
                     </HistPedidosCard>
                     <HistPedidosCard>
                         <PedidoPlaceText>
@@ -63,7 +72,7 @@ export class PageProfile extends React.Component {
                         </PedidoDateText>
                         <SubtotalText>
                             Subtotal R$89,00
-                        </SubtotalText>            
+                        </SubtotalText>
                     </HistPedidosCard>
                     <HistPedidosCard>
                         <PedidoPlaceText>
@@ -74,7 +83,7 @@ export class PageProfile extends React.Component {
                         </PedidoDateText>
                         <SubtotalText>
                             Subtotal R$77,00
-                        </SubtotalText>            
+                        </SubtotalText>
                     </HistPedidosCard>
                     <HistPedidosCard>
                         <PedidoPlaceText>
@@ -85,20 +94,20 @@ export class PageProfile extends React.Component {
                         </PedidoDateText>
                         <SubtotalText>
                             Subtotal R$77,00
-                        </SubtotalText>            
+                        </SubtotalText>
                     </HistPedidosCard>
                 </HistPedidosWrapper>
 
-                <Footer>
-
-                </Footer>
+                <Footer />
 
             </ProfileWrapper>
         )
     }
 }
-const mapDispatchToProps = dispatch => ({ 
-    goToEditProfile: () => dispatch(push(routes.PageEditProfile)),    
-  })
+const mapDispatchToProps = dispatch => ({
+    goToEditProfile: () => dispatch(push(routes.PageEditProfile)),
+    setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
+})
+
 
 export default connect(null, mapDispatchToProps)(PageProfile);

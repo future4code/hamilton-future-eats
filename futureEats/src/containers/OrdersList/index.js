@@ -17,6 +17,7 @@ import {
     OrderPrice,
     } from './style';
 import samplePic from '../../imgs/mao-santa-burguer-1531851949973-v-2-900-x-506.png'
+import {getActiveOrder, placeOrder} from '../../actions/orders'
 
 
 
@@ -24,8 +25,13 @@ export class OrdersList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: 1,
+            orders: "1",
         }
+    }
+
+    componentDidMount(){
+        
+        this.props.getActiveOrder();
     }
 
     render() {
@@ -60,6 +66,14 @@ export class OrdersList extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    orders: state.orders.orders
+})
+
+const mapDispatchToProps = dispatch => ({
+    placeOrder: (body, restaurantId) => dispatch(placeOrder(body, restaurantId)),
+    getActiveOrder: () => dispatch(getActiveOrder()),
+})
 
 
-export default connect(null, null)(OrdersList);
+export default connect(mapStateToProps, mapDispatchToProps)(OrdersList);

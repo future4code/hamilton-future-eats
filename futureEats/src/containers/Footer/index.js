@@ -1,52 +1,57 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../Router";
-import {FooterWrapper} from "./style"
-import {ReactComponent as HomeIcon} from "../../icons/homepage.svg"
-import {ReactComponent as CartIcon} from "../../icons/shopping-cart.svg"
-import {ReactComponent as AvatarIcon} from "../../icons/avatar.svg"
+import { FooterWrapper } from "./style"
+import { ReactComponent as HomeIcon } from "../../icons/homepage.svg"
+import { ReactComponent as CartIcon } from "../../icons/shopping-cart.svg"
+import { ReactComponent as AvatarIcon } from "../../icons/avatar.svg"
 
 
-class Footer extends React.Component{
+class Footer extends React.Component {
 
     handleOnClick = (page) => {
+        const { goToFeedPage, goToCartPage, goToProfilePage, setCurrentPage } = this.props
 
-        switch(page){
-            case "home":{
-                return 
+        switch (page) {
+            case "home": {
+                return goToFeedPage();
             }
-            case "cart":{
-                return
+            case "cart": {
+                return goToCartPage();
             }
-            case "profile":{
-                return
+            case "profile": {
+                return goToProfilePage();
             }
         }
     }
 
 
-    render(){
-        return(
-            <FooterWrapper active={2}>
-
-                <HomeIcon/>
-                <CartIcon/>
-                <AvatarIcon/>
+    render() {
+        const { currentPage } = this.props
+        return (
+            <FooterWrapper active={currentPage}>
+                <HomeIcon onClick={() => this.handleOnClick("home")} />
+                <CartIcon onClick={() => this.handleOnClick("cart")} />
+                <AvatarIcon onClick={() => this.handleOnClick("profile")} />
 
             </FooterWrapper>
         )
     }
 };
 
-const mapStateToProps = state =>{
-
-}
-
-const mapDispatchToProps = dispatch =>{
-    return{
-        goToCartPage: () => dispatch(push(routes.cart))
+const mapStateToProps = state => {
+    return {
+        currentPage: state.page.currentPage
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(Footer);
+const mapDispatchToProps = dispatch => {
+    return {
+        goToFeedPage: () => dispatch(push(routes.feed)),
+        goToCartPage: () => dispatch(push(routes.cart)),
+        goToProfilePage: () => dispatch(push(routes.profile)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

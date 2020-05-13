@@ -15,7 +15,7 @@ import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
-import {AppWrapper, PageWrapper} from "./style"
+import { AppWrapper, PageWrapper, StatusBar, DisplayWrapper } from "./style"
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -41,11 +41,14 @@ export const App = () => (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
 
-          <AppWrapper> 
-          <PageWrapper>  
-            <Router history={history} />
-           </PageWrapper> 
-         </AppWrapper>  
+        <AppWrapper>
+          <DisplayWrapper>
+            <StatusBar />
+            <PageWrapper>
+              <Router history={history} />
+            </PageWrapper>
+          </DisplayWrapper>
+        </AppWrapper>
 
       </MuiThemeProvider>
     </JssProvider>

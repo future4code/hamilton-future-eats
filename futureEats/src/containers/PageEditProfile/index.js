@@ -5,6 +5,7 @@ EditProfileInputsWrapper} from '../PageProfile/style';
 import { Inputs, EntrarButton } from '../PageLogin/style'
 
 
+
 export class PageEditProfile extends React.Component {
 
     render() {
