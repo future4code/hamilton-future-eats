@@ -47,7 +47,6 @@ export class PageLogin extends React.Component {
                     name="password"
                     label="Senha"
                     required
-                    type="password"
                     variant="outlined"
                     value={password}
                     type={showPassword ? 'text' : 'password'}
