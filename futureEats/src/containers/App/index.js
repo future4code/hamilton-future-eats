@@ -41,11 +41,11 @@ export const App = () => (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
 
-        <AppWrapper>
-          <PageWrapper>
+          <AppWrapper> 
+          <PageWrapper>  
             <Router history={history} />
-          </PageWrapper>
-        </AppWrapper>
+           </PageWrapper> 
+         </AppWrapper>  
 
       </MuiThemeProvider>
     </JssProvider>
