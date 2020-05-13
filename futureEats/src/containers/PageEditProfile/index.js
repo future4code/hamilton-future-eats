@@ -1,28 +1,56 @@
 import React from 'react';
 import { connect } from "react-redux"
 import { ProfileWrapper, ProfileHeader, ProfileText, 
-EditProfileInputsWrapper} from '../PageProfile/style';
+EditProfileForm, BackIcon} from '../PageProfile/style';
 import { Inputs, EntrarButton } from '../PageLogin/style'
-
-
+import { routes } from "../Router"
+import { push } from "connected-react-router"
+import {updateProfile} from '../../actions/user'
 
 export class PageEditProfile extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            email: '',
+            cpf: ''
+            }
+    }
+
+    handleInputChange = (event) => {
+        const {name, value} = event.target
+        this.setState({ [name]: value })
+    }
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const body = this.state
+        this.props.updateProfile(body)
+        this.props.goToProfile()
+    }
+    handleClick = (event) => {
+        this.props.goToProfile()
+    }
 
     render() {
+        
+        const body  = this.state
         return (
             <ProfileWrapper>
                 <ProfileHeader>
+                    
+                        <BackIcon onClick={this.handleClick}/>
+                   
                     <ProfileText>Editar</ProfileText>
                 </ProfileHeader>
-                <EditProfileInputsWrapper>
+                <EditProfileForm onSubmit={this.handleSubmit}>
                     <Inputs
-                        name="name"
+                        name="name"                        
                         label="Nome"
                         required
                         type="text"
                         variant="outlined"
-                    //onChange={this.handleInputChange}
-                    // value= {já deve vir com o valor do nome do usuário}                  
+                        onChange={this.handleInputChange}
+                        value={this.state.name}                  
                     />
                     <Inputs
                         name="email"
@@ -30,27 +58,33 @@ export class PageEditProfile extends React.Component {
                         required
                         type="email"
                         variant="outlined"
-                    //onChange={this.handleInputChange}
-                    // value= {já deve vir com o valor do email do usuário}                  
+                        onChange={this.handleInputChange}
+                        value= {this.state.email}                  
                     />
                     <Inputs
-                        name="name"
-                        label="Nome"
+                        name="cpf"
+                        label="CPF"
                         required
                         type="text"
                         variant="outlined"
-                    //onChange={this.handleInputChange}
-                    // value= {já deve vir com o valor do nome do usuário}                  
+                        onChange={this.handleInputChange}
+                        value= {this.state.cpf}                  
                     />
-                <EntrarButton color="primary" variant="contained">
+                <EntrarButton type="submit" color="primary" variant="contained">
                      Salvar
                 </EntrarButton>
-                </EditProfileInputsWrapper>
+                </EditProfileForm>
                 
             </ProfileWrapper>
             
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+       updateProfile: (body) => dispatch(updateProfile(body)),
+       goToProfile: () => dispatch(push(routes.profile))
+    }
+}
 
-export default connect(null, null)(PageEditProfile);
+export default connect(null, mapDispatchToProps)(PageEditProfile);

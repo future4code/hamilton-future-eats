@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
+import { FaAngleLeft } from 'react-icons/fa'
 
 export const ProfileWrapper = styled.div`
     display: flex;
@@ -25,7 +26,7 @@ export const ProfileInfos = styled.div`
     width: 100%;
     height: fit-content; 
 `
-export const EditIcon = styled.button `
+export const EditIcon = styled.div `
 
 `
 export const ProfileInfosWrapper = styled.div `
@@ -68,10 +69,11 @@ export const HistPedidosWrapper = styled.div `
     padding: 16px;
     overflow-y: scroll;
     height: 335px;
-    
 `
-
-export const EditProfileInputsWrapper = styled.div `
-    
+export const EditProfileForm = styled.form `
     margin: 16px;
+`
+export const BackIcon = styled(FaAngleLeft) `
+    position: absolute;
+    left: 15px;
 `

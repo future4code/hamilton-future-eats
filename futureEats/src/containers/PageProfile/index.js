@@ -10,15 +10,18 @@ import { routes } from '../Router'
 import Footer from '../Footer'
 import {setCurrentPage} from "../../actions/page"
 
+
 export class PageProfile extends React.Component {
 
     componentDidMount() {
         this.props.setCurrentPage(3);
     }
-
+    handleClick = (event) => {
+        this.props.goToEditProfile()
+    }
 
     render() {
-        const { goToEditProfile } = this.props
+        
         return (
             <ProfileWrapper>
                 <ProfileHeader>
@@ -30,7 +33,7 @@ export class PageProfile extends React.Component {
                         <ProfileText>bruna_o@gmail.com</ProfileText>
                         <ProfileText>333.333.333-36</ProfileText>
                     </ProfileInfos>
-                    <EditIcon onClick={goToEditProfile}><i class="material-icons md-36">create</i></EditIcon>
+                    <EditIcon onClick={this.handleClick}><i class="material-icons md-36">create</i></EditIcon>
                 </ProfileInfosWrapper>
 
                 <ProfileAdressInfoWrapper>
@@ -105,7 +108,7 @@ export class PageProfile extends React.Component {
     }
 }
 const mapDispatchToProps = dispatch => ({
-    goToEditProfile: () => dispatch(push(routes.PageEditProfile)),
+    goToEditProfile: () => dispatch(push(routes.editProfile)),
     setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
 })
 
