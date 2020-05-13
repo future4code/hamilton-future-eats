@@ -10,7 +10,7 @@ import PageCart from "../PageCart";
 import PageAddressRegistration from "../PageAddressRegistration";
 import PageError from "../PageError"
 
-const routes = {
+export const routes = {
   login: "/login",
   signUp: "/signup",
   feed: "/feed",
