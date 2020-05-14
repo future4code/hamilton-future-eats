@@ -28,6 +28,9 @@ export const ProfileInfos = styled.div`
 `
 export const EditIcon = styled.div `
 
+:active{
+    color: #5cb646;
+}
 `
 export const ProfileInfosWrapper = styled.div `
     display: flex;

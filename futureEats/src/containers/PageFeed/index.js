@@ -3,22 +3,23 @@ import { connect } from "react-redux";
 import { FeedWrapper, SearchBar, SearchIconCustom, LogoWrapper, Logo, NavBar, OptionText, ContentWrapper } from "./style";
 import CardProduct from "../../components/CardProduct";
 import Footer from "../Footer";
-import {setCurrentPage} from "../../actions/page"
-import {getRestaurants} from "../../actions/restaurants"
+import { setCurrentPage } from "../../actions/page"
+import { getRestaurants } from "../../actions/restaurants"
 
 
 class PageFeed extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            search: ""
+            search: "",
+            currentFilter: ""
         }
     }
 
     componentDidMount() {
         this.props.setCurrentPage(1);
         this.props.getRestaurants();
-        
+
     }
 
     handleInputChange = (event) => {
@@ -30,9 +31,59 @@ class PageFeed extends React.Component {
         console.log(event.key === "Enter")
     }
 
+    renderRestaurants = () => {
+        const { restaurants } = this.props
+        let filteredRestaurants = restaurants
+
+        if (this.state.currentFilter) {
+            filteredRestaurants = restaurants.filter(element => {
+                return (
+                    element.category === this.state.currentFilter
+                )
+            })
+            return filteredRestaurants
+        }
+
+        return (
+            filteredRestaurants.map(element => {
+
+                return (
+                    <CardProduct
+                        name={element.name}
+                        logoUrl={element.logoUrl}
+                        shipping={element.shipping}
+                        deliveryTime={element.deliveryTime}
+                    />
+                )
+            })
+        )
+    }
+
+    renderOptions = () => {
+        const { restaurants } = this.props
+
+        return (
+            restaurants.map(element => {
+                return (
+                    <OptionText
+                        onClick={() => this.handleFilter(element.category)}
+                    >
+                        {element.category}
+                    </OptionText>
+                )
+            })
+        )
+    }
+
+    handleFilter = (filter) => {
+
+        this.setState({
+            currentFilter: filter
+        })
+    }
 
     render() {
-        
+        console.log(this.state.currentFilter)
         return (
             <FeedWrapper>
                 <LogoWrapper>
@@ -52,31 +103,11 @@ class PageFeed extends React.Component {
                     />
                 </div>
                 <NavBar>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
-                    <OptionText>Option</OptionText>
+                    <OptionText>Todos</OptionText>
+                    {this.renderOptions()}
                 </NavBar>
                 <ContentWrapper>
-                    <CardProduct />
-                    <CardProduct />
-                    <CardProduct />
-                    <CardProduct />
-                    <CardProduct />
-                    <CardProduct />
-                    <CardProduct />
+                    {this.renderRestaurants()}
                 </ContentWrapper>
                 <Footer />
             </FeedWrapper>
@@ -86,13 +117,13 @@ class PageFeed extends React.Component {
 
 const mapStateToProps = (state) => ({
     restaurants: state.restaurants.restaurants
-    
+
 })
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
         getRestaurants: () => dispatch(getRestaurants()),
-       
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PageFeed);
