@@ -8,16 +8,10 @@ import {
     RestaurantName,
     RestaurantAddress,
     ExpectedTime,
-    OrderCard,
-    OrderImg,
-    OrderName,
-    OrderNumber,
-    OrderDescription,
-    OrderRemove,
-    OrderPrice,
     } from './style';
-import samplePic from '../../imgs/mao-santa-burguer-1531851949973-v-2-900-x-506.png'
 import {getActiveOrder, placeOrder} from '../../actions/orders'
+import { getRestaurantDetail } from '../../actions/restaurants'
+import OrderCard from '../../components/OrderCard'
 
 
 
@@ -25,37 +19,38 @@ export class OrdersList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: "1",
+            quantity: 2,
         }
     }
 
     componentDidMount(){
-        
         this.props.getActiveOrder();
+        this.props.getRestaurantDetail()
     }
 
     render() {
-        const { orders } = this.state
-        const {  } = this.props
-        
+        const { quantity } = this.state
+        const { orders } = this.props
+        const { name, photoUrl, description, price } = this.props.orders
         return (
             <OrdersListWrapper>
-                    {orders ? (
+                    {orders.products ? (
                         <OrderWrapper>
                             <RestaurantInfo>
                                 <RestaurantName>Venda do Chaves</RestaurantName>
                                 <RestaurantAddress>Vila da Boa Vizinhança, barril</RestaurantAddress>
                                 <ExpectedTime>30 - 45 min</ExpectedTime>
                             </RestaurantInfo>
-                            <OrderCard>
-                                <OrderImg src={samplePic}/>
-                                <OrderName>Churros do Chaves</OrderName>
-                                <OrderNumber><span>1</span></OrderNumber>
-                                <OrderDescription>Churros fresquinho, coberto por uma fina
-                                     e deliciosa camada de chocolete.</OrderDescription>
-                                <OrderPrice>R$7,00</OrderPrice>
-                                <OrderRemove><span>remover</span></OrderRemove>
-                            </OrderCard>
+                        {orders.products.map( product => (
+                            <OrderCard
+                            photoUrl={product.photoUrl}
+                            name={product.name}
+                            quantity={quantity}
+                            description={product.description}
+                            price={product.price}
+                            />
+                        ))
+                        }
                         </OrderWrapper>
 
                     ) : (
@@ -67,12 +62,13 @@ export class OrdersList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    orders: state.orders.orders
+    orders: state.restaurants.restaurantDetail
 })
 
 const mapDispatchToProps = dispatch => ({
     placeOrder: (body, restaurantId) => dispatch(placeOrder(body, restaurantId)),
     getActiveOrder: () => dispatch(getActiveOrder()),
+    getRestaurantDetail: () => dispatch(getRestaurantDetail()),
 })
 
 

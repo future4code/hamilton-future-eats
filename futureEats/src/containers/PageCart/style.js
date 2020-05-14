@@ -9,7 +9,8 @@ export const CartWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;; 
+    justify-content: flex-start;
+    max-height: 100%;
 `
 
 export const Title = styled(Typography)`
@@ -43,11 +44,12 @@ export const Address = styled(Typography)`
 
 export const PaymentWrapper = styled.div`
     min-height: ${({orders}) => (orders ? 'none' : '355px')};
+    max-height: 100%;
     height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 33px 16px 0 16px;
+    padding: 16px 16px 0 16px;
 `
 
 export const DeliveryPrice = styled(Typography)`
@@ -78,7 +80,6 @@ export const SubTotalPrice = styled(Typography)`
 
 export const PaymentMethod = styled.div`
     width: 100%;
-    padding: 4px 0;
 `
 
 export const PaymentTitle = styled(Typography)`
@@ -104,7 +105,7 @@ export const ConfirmButton = styled(Button)`
     width: 328px;
     height: 42px;
     border-radius: 2px;
-    margin-top: 16px;
+    margin: 14px 0;
     background-color: #5cb646;
 
     &&:hover{

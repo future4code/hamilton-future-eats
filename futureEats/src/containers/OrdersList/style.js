@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography'
 
 export const OrdersListWrapper = styled.div`
 width: 100%;
-height: ${({orders}) => (orders ? '42' : 'auto')};    
+height: ${({orders}) => (orders ? '50' : 'auto')};
 align-items: center;
 display: flex;
 flex-direction: column;
-padding: 16px 4px 8px 16px;
+padding: 0 4px 0 16px;
 `
 
 export const IfEmpty = styled(Typography)`
@@ -19,7 +19,7 @@ padding: 12px 0;
 
 export const OrderWrapper = styled.div`
 width: 100%;
-height: ${({orders}) => (orders ? '42' : '185px')};
+height: ${({orders}) => (orders ? '42' : '200px')};
 overflow-y: scroll;
 `
 
@@ -45,69 +45,4 @@ color: #b8b8b8;
 export const ExpectedTime = styled(Typography)`
 font-size: 16px;
 color: #b8b8b8;
-`
-
-export const OrderCard = styled.div`
-width: 100%;
-height: 112px;
-border-radius: 8px;
-border: solid 1px #b8b8b8;
-margin-bottom: 8px;
-display: grid;
-grid: repeat(10, 1fr) / repeat(10, 1fr);
-`
-
-export const OrderImg = styled.img`
-grid-column: 1 / 4;
-grid-row: 1 / 11;
-`
-
-export const OrderName = styled(Typography)`
-color: #5cb646;
-padding-left: 16px;
-font-size: 16px;
-grid-column: 4/10;
-grid-row: 2/3;
-`
-
-export const OrderNumber = styled(Typography)`
-color: #5cb646;
-border-bottom: #5cb646 1px solid;
-border-left: #5cb646 1px solid;
-border-radius: 0 8px;
-grid-column: 10/11;
-grid-row: 1/3;
-display: flex;
-align-items: center;
-justify-content: center;
-`
-
-export const OrderDescription = styled(Typography)`
-font-size: 12px;
-color: #b8b8b8;
-grid-row: 3/7;
-grid-column: 4/10;
-padding: 6px 0 0 16px;
-overflow-y: scroll;
-`
-
-export const OrderPrice = styled(Typography)`
-font-size: 16px;
-font-weight: 700;
-grid-row: 7/10;
-grid-column: 4/8;
-padding: 4px 0 0 16px;
-`
-
-export const OrderRemove = styled(Typography)`
-color: #e02020;
-border-top: #e02020 1px solid;
-border-left: #e02020 1px solid;
-border-radius: 8px 0;
-grid-column: 8/11;
-grid-row: 7/11;
-margin-top: 7px;
-display: flex;
-align-items: center;
-justify-content: center;
 `

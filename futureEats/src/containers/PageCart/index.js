@@ -87,9 +87,7 @@ export class PageCart extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
-
     }
 }
 
