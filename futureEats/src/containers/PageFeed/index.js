@@ -12,7 +12,7 @@ class PageFeed extends React.Component {
         super(props)
         this.state = {
             search: "",
-            currentFilter: ""
+            currentFilter: false
         }
     }
 
@@ -32,21 +32,20 @@ class PageFeed extends React.Component {
     }
 
     renderRestaurants = () => {
-        const { restaurants } = this.props
-        let filteredRestaurants = restaurants
+        const { restaurants } = this.props;
+        const {currentFilter} = this.state;
+        let filteredRestaurants = restaurants;
 
-        if (this.state.currentFilter) {
-            filteredRestaurants = restaurants.filter(element => {
-                return (
-                    element.category === this.state.currentFilter
-                )
-            })
-            return filteredRestaurants
+       if(restaurants){
+           if(currentFilter){
+               filteredRestaurants = restaurants.filter((element)=>{
+                   return (element.category === currentFilter)
+                   })
+                }
         }
 
         return (
             filteredRestaurants.map(element => {
-
                 return (
                     <CardProduct
                         name={element.name}
@@ -83,7 +82,6 @@ class PageFeed extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentFilter)
         return (
             <FeedWrapper>
                 <LogoWrapper>
@@ -103,11 +101,11 @@ class PageFeed extends React.Component {
                     />
                 </div>
                 <NavBar>
-                    <OptionText>Todos</OptionText>
+                    <OptionText onClick={() => this.handleFilter(false)}>Todos</OptionText>
                     {this.renderOptions()}
                 </NavBar>
                 <ContentWrapper>
-                    {this.renderRestaurants()}
+                    {(this.props.restaurants) && this.renderRestaurants()}
                 </ContentWrapper>
                 <Footer />
             </FeedWrapper>
