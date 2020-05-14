@@ -8,3 +8,12 @@ export function setCurrentPage (currentPage) {
         }
     }
 }
+
+export function setSearch (searchFromInput){
+    return{
+        type: 'SET_SEARCH',
+        payload:{
+            currentSearch: searchFromInput
+        }
+    }
+}

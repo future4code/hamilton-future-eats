@@ -10,7 +10,8 @@ import PageCart from "../PageCart";
 import PageAddressRegistration from "../PageAddressRegistration";
 import PageError from "../PageError"
 import PageEditProfile from "../PageEditProfile"
-import PageHome from "../PageHome"
+import PageHome from "../PageHome";
+import PageSearch from "../PageSearch"
 
 export const routes = {
   home: "/",
@@ -22,7 +23,8 @@ export const routes = {
   restaurant: "/restaurant",
   cart: "/restaurant/cart",
   addressRegistration: "/profile/address",
-  error: "/"
+  error: "/",
+  search: "/feed/search",
 };
 
 function Router(props) {
@@ -38,6 +40,7 @@ function Router(props) {
         <Route exact path={routes.restaurant} component={PageRestaurant} />
         <Route exact path={routes.cart} component={PageCart} />
         <Route exact path={routes.addressRegistration} component={PageAddressRegistration} />
+        <Route exact path={routes.search} component={PageSearch} />
         <Route path={routes.error} component={PageError} />
         
       </Switch>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { FeedWrapper, SearchBar, SearchIconCustom, LogoWrapper, Logo, NavBar, OptionText, ContentWrapper } from "./style";
+import { FeedWrapper, LogoWrapper, Logo, NavBar, OptionText, ContentWrapper } from "./style";
 import CardProduct from "../../components/CardProduct";
 import Footer from "../Footer";
-import { setCurrentPage } from "../../actions/page"
-import { getRestaurants } from "../../actions/restaurants"
+import { setCurrentPage } from "../../actions/page";
+import { getRestaurants } from "../../actions/restaurants";
+import SearchBar from "../SearchBar"
 
 
 class PageFeed extends React.Component {
@@ -12,14 +13,13 @@ class PageFeed extends React.Component {
         super(props)
         this.state = {
             search: "",
-            currentFilter: ""
+            currentFilter: false
         }
     }
 
     componentDidMount() {
         this.props.setCurrentPage(1);
         this.props.getRestaurants();
-
     }
 
     handleInputChange = (event) => {
@@ -27,26 +27,21 @@ class PageFeed extends React.Component {
         this.setState({ [name]: value })
     }
 
-    handleOnKeyDown = (event) => {
-        console.log(event.key === "Enter")
-    }
-
     renderRestaurants = () => {
-        const { restaurants } = this.props
-        let filteredRestaurants = restaurants
+        const { restaurants } = this.props;
+        const {currentFilter} = this.state;
+        let filteredRestaurants = restaurants;
 
-        if (this.state.currentFilter) {
-            filteredRestaurants = restaurants.filter(element => {
-                return (
-                    element.category === this.state.currentFilter
-                )
-            })
-            return filteredRestaurants
+       if(restaurants){
+           if(currentFilter){
+               filteredRestaurants = restaurants.filter((element)=>{
+                   return (element.category === currentFilter)
+                   })
+                }
         }
 
         return (
             filteredRestaurants.map(element => {
-
                 return (
                     <CardProduct
                         name={element.name}
@@ -83,31 +78,20 @@ class PageFeed extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentFilter)
         return (
             <FeedWrapper>
                 <LogoWrapper>
                     <Logo>FutureEats</Logo>
                 </LogoWrapper>
                 <div>
-                    <SearchBar
-                        name="search"
-                        type="text"
-                        onChange={""}
-                        placeholder="Restaurante"
-                        startAdornment={
-                            <SearchIconCustom edge="start" />
-                        }
-                        onChange={this.handleInputChange}
-                        onKeyDown={this.handleOnKeyDown}
-                    />
+                    <SearchBar/>
                 </div>
                 <NavBar>
-                    <OptionText>Todos</OptionText>
+                    <OptionText onClick={() => this.handleFilter(false)}>Todos</OptionText>
                     {this.renderOptions()}
                 </NavBar>
                 <ContentWrapper>
-                    {this.renderRestaurants()}
+                    {(this.props.restaurants) && this.renderRestaurants()}
                 </ContentWrapper>
                 <Footer />
             </FeedWrapper>
@@ -117,8 +101,8 @@ class PageFeed extends React.Component {
 
 const mapStateToProps = (state) => ({
     restaurants: state.restaurants.restaurants
-
 })
+
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
