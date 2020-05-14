@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import SearchIcon from '@material-ui/icons/Search';
+
 
 export const FeedWrapper = styled.div`
     height: 100%;
@@ -13,13 +12,6 @@ export const FeedWrapper = styled.div`
     align-items:center;
 `
 
-export const SearchBar = styled(OutlinedInput)`
-    height: 56px;
-    width: 328px;
-`
-export const SearchIconCustom = styled(SearchIcon)`
-    color: #b8b8b8;
-`
 export const LogoWrapper = styled.div`
     border-bottom: 1px solid #b8b8b8;
     height: 100%;
