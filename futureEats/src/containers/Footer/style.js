@@ -8,6 +8,7 @@ export const FooterWrapper = styled.div`
     grid-template-columns: repeat(3, 1fr);
     align-items:center;
     justify-items: center;
+    box-shadow: 0 -0.9px 0 0 rgba(0, 0, 0, 0.25);
 
     svg{
         fill: #b8b8b8;

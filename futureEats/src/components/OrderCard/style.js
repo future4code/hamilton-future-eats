@@ -15,6 +15,9 @@ grid: repeat(10, 1fr) / repeat(10, 1fr);
 export const OrderImg = styled.img`
 grid-column: 1 / 4;
 grid-row: 1 / 11;
+height: 100%;
+width: 100%;
+border-radius: 8px 0 0 8px;
 `
 
 export const OrderName = styled(Typography)`

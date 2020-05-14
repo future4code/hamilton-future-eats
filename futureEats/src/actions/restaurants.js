@@ -38,7 +38,7 @@ export const getRestaurants = () => async (dispatch) => {
 export const getRestaurantDetail = () => async (dispatch) => {
     try {
         const response = await axios.get(
-            `${baseUrl}/restaurants/${1}`, {
+            `${baseUrl}/restaurants/${3}`, {
                 headers: {
                     auth: token,
                 }

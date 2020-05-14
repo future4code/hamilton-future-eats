@@ -4,11 +4,21 @@ const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats
 
 //Síncrona
 
-export function setActiveOrder(orderFromApi){
+
+export function setOrder(orderFromApi){
+    return {
+        type: 'SET_ORDER',
+        payload: {
+            orders: orderFromApi
+        }
+    }
+}
+
+export function setActiveOrder(activeOrderAPI){
     return {
         type: 'SET_ACTIVE_ORDER',
         payload: {
-            orders: orderFromApi
+            activeOrders: activeOrderAPI
         }
     }
 }
