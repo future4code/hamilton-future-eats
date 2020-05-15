@@ -1,5 +1,5 @@
 import axios from "axios";
-import { push } from "connected-react-router";
+import { push, replace } from "connected-react-router";
 import { routes } from "../containers/Router"
 
 
@@ -73,6 +73,25 @@ export const addAddress = (body) => async (dispatch) => {
     console.log("OK!", localStorage.getItem("token"));
 
     dispatch(push(routes.feed))
+  } catch (err) {
+    console.error(err);
+
+  }
+};
+export const updateAddress = (body) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.put('https://us-central1-missao-newton.cloudfunctions.net/futureEats/address',
+      body, {
+      headers: {
+        auth: token,
+      },
+    });
+    localStorage.setItem("token", response.data.token);
+    console.log("OK!", localStorage.getItem("token"));
+
+    dispatch(replace(routes.profile))
   } catch (err) {
     console.error(err);
 
