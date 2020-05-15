@@ -5,15 +5,15 @@ import {
     OrderName,
     OrderNumber,
     OrderDescription,
-    OrderRemove,
+    OrderButton,
     OrderPrice,
     } from './style';
 
 export default class OrderCard extends React.Component {
 
     render() {
-        const { price, photoUrl, name, description, quantity } = this.props
-        console.log(photoUrl)
+        const { addItem, price, photoUrl, name, description, quantity } = this.props
+
         return (
             <OrderCardWrapper>
                 <OrderImg src={photoUrl}/>
@@ -21,7 +21,11 @@ export default class OrderCard extends React.Component {
                 <OrderNumber><span>{quantity}</span></OrderNumber>
                 <OrderDescription>{description}</OrderDescription>
                 <OrderPrice>R${price}</OrderPrice>
-                <OrderRemove><span>remover</span></OrderRemove>
+                {addItem ? 
+                <OrderButton status={addItem}><span>Adicionar</span></OrderButton>
+                :
+                <OrderButton status={addItem}><span>Remover</span></OrderButton>
+                }
             </OrderCardWrapper>
         )
     }

@@ -1,5 +1,16 @@
 const initialState = {
-    orders: [],
+    orders: [
+        {
+            category: 'Refeição',
+            description: 'A tradição italiana na sua casa',
+            id: 'FcAp6stw4Essna5JdTKS',
+            name: 'Penne do Campo',
+            photoUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/1b7b1a90-043d-45d6-9932-2903b304b956/201905291247_x5ae_c.jpg',
+            price: 32,
+        }
+    ],
+    quantity: 3,
+    addItem: false,
     ordersHistory: [],
     activeOrder: []
 }

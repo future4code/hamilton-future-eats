@@ -57,10 +57,10 @@ grid-column: 4/8;
 padding: 4px 0 0 16px;
 `
 
-export const OrderRemove = styled(Typography)`
-color: #e02020;
-border-top: #e02020 1px solid;
-border-left: #e02020 1px solid;
+export const OrderButton = styled(Typography)`
+color: ${({status}) => (status ? '#5cb646' : '#e02020')};
+border-top: 1px solid ${({status}) => (status ? '#5cb646' : '#e02020')};
+border-left: 1px solid ${({status}) => (status ? '#5cb646' : '#e02020')};
 border-radius: 8px 0;
 grid-column: 8/11;
 grid-row: 7/11;

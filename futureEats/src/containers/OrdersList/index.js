@@ -24,30 +24,31 @@ export class OrdersList extends React.Component {
     }
 
     componentDidMount(){
-        this.props.getActiveOrder();
+        // this.props.getActiveOrder();
         this.props.getRestaurantDetail()
     }
 
     render() {
         const { quantity } = this.state
-        const { orders } = this.props
-        const { name, photoUrl, description, price } = this.props.orders
+        const { orders, restaurant, addItem} = this.props
         return (
             <OrdersListWrapper>
-                    {orders.products ? (
+                    {orders && restaurant ? (
                         <OrderWrapper>
                             <RestaurantInfo>
-                                <RestaurantName>Venda do Chaves</RestaurantName>
-                                <RestaurantAddress>Vila da Boa Vizinhança, barril</RestaurantAddress>
-                                <ExpectedTime>30 - 45 min</ExpectedTime>
+                                <RestaurantName>{restaurant.name}</RestaurantName>
+                                <RestaurantAddress>{restaurant.address}</RestaurantAddress>
+                                <ExpectedTime>{restaurant.deliveryTime}</ExpectedTime>
                             </RestaurantInfo>
-                        {orders.products.map( product => (
+                        {orders.map( product => (
                             <OrderCard
+                            key={product.id}
                             photoUrl={product.photoUrl}
                             name={product.name}
                             quantity={quantity}
                             description={product.description}
                             price={product.price}
+                            addItem={addItem}
                             />
                         ))
                         }
@@ -62,7 +63,9 @@ export class OrdersList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    orders: state.restaurants.restaurantDetail
+    orders: state.orders.orders,
+    restaurant: state.restaurants.restaurantDetail,
+    addItem: state.orders.addItem
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -3,8 +3,6 @@ const token = localStorage.getItem("token")
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //Síncrona
-
-
 export function setOrder(orderFromApi){
     return {
         type: 'SET_ORDER',
@@ -31,8 +29,8 @@ export function setOrdersHistory(ordersHistory){
         }
     }
 }
-//Assíncrona
 
+//Assíncrona
 export const placeOrder = (body, restaurantId) => async (dispatch) => {
     try {
         const response = await axios.post(
