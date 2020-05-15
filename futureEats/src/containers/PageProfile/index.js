@@ -9,19 +9,31 @@ import { push } from "connected-react-router";
 import { routes } from '../Router'
 import Footer from '../Footer'
 import {setCurrentPage} from "../../actions/page"
-
+import { replace } from "connected-react-router"
+import {getProfile} from '../../actions/user'
+import {ordersHistory} from '../../actions/orders'
 
 export class PageProfile extends React.Component {
 
     componentDidMount() {
+        const token = localStorage.getItem("token")
+        this.props.getProfile(token)
+        this.props.ordersHistory()
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
         this.props.setCurrentPage(3);
     }
-    handleClick = (event) => {
+
+    handleClick = () => {
         this.props.goToEditProfile()
+    }
+    handleClick2 = () => {
+        this.props.goToEditAdress()
     }
 
     render() {
-        
+        const {user} = this.props
         return (
             <ProfileWrapper>
                 <ProfileHeader>
@@ -29,9 +41,9 @@ export class PageProfile extends React.Component {
                 </ProfileHeader>
                 <ProfileInfosWrapper>
                     <ProfileInfos>
-                        <ProfileText>Bruna Oliveira</ProfileText>
-                        <ProfileText>bruna_o@gmail.com</ProfileText>
-                        <ProfileText>333.333.333-36</ProfileText>
+                        <ProfileText>{user.name}</ProfileText> 
+                        <ProfileText>{user.email}</ProfileText>
+                        <ProfileText>{user.cpf}</ProfileText>
                     </ProfileInfos>
                     <EditIcon onClick={this.handleClick}><i class="material-icons md-36">create</i></EditIcon>
                 </ProfileInfosWrapper>
@@ -42,10 +54,10 @@ export class PageProfile extends React.Component {
                             Endereço Cadastrado
                         </ProfileTextSecond>
                         <ProfileText>
-                            Rua Alessandra Vieira, 42 - Santana
+                            {user.address}
                         </ProfileText>
                     </ProfileAdressInfo>
-                    <EditIcon><i class="material-icons">create</i></EditIcon>
+                    <EditIcon onClick={this.handleClick2}><i class="material-icons">create</i></EditIcon>
                 </ProfileAdressInfoWrapper>
 
                 <ProfileInfosWrapper style={{ borderBottom: '1px solid black' }}>
@@ -107,10 +119,21 @@ export class PageProfile extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    user: state.user.user,  
+    ordersHistory: state.orders.ordersHistory
+})
+
 const mapDispatchToProps = dispatch => ({
     goToEditProfile: () => dispatch(push(routes.editProfile)),
     setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
+    goToLoginScreen: () => dispatch(replace(routes.login)),
+    getProfile: (token) => dispatch(getProfile(token)),
+    ordersHistory: () => dispatch(ordersHistory()),
+    goToEditAdress:() => dispatch(push(routes.editAddress)),
+
 })
 
 
-export default connect(null, mapDispatchToProps)(PageProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(PageProfile);

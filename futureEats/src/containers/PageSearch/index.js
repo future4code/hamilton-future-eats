@@ -1,13 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import {SearchWrapper, LogoWrapper, Logo} from "./style";
+import {SearchWrapper, LogoWrapper, Logo, BackIcon, DivBackIcon} from "./style";
 import SearchBar from "../SearchBar";
 import CardProduct from "../../components/CardProduct";
 import { getRestaurants } from "../../actions/restaurants";
+import { replace } from "connected-react-router";
+import { routes } from "../Router"
+
 
 class PageSearch extends React.Component{
 
-
+    componentDidMount() {
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
+    }
 
     renderSearchRestaurants = ()=>{
         const{restaurants, currentSearch}=this.props
@@ -30,7 +38,9 @@ class PageSearch extends React.Component{
         )
     }
 
-
+    handleClick = () => {
+        this.props.goBackToFeed()
+    }
 
     render(){
         const{restaurants}=this.props
@@ -40,6 +50,10 @@ class PageSearch extends React.Component{
         return(
             <SearchWrapper>
                 <LogoWrapper>
+                    <DivBackIcon>
+                         <BackIcon onClick={this.handleClick} />
+                    </DivBackIcon>
+                   
                     <Logo>FutureEats</Logo>
                 </LogoWrapper>
                 <div>
@@ -65,6 +79,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => {
     return {
         getRestaurants: () => dispatch(getRestaurants()),
+        goBackToFeed: () => dispatch(replace(routes.feed)),
+        goToLoginScreen: () => dispatch(replace(routes.login))
     }
 }
 

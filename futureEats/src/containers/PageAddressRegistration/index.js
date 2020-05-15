@@ -1,10 +1,9 @@
 import React from 'react';
 import { addAddress } from '../../actions/user'
 import { connect } from "react-redux"
-import { LoginWrapper, Logo, MyAddress, Inputs, SaveButton, Form } from './style';
-import imgLogo from '../../imgs/logo-future-eats-invert.png';
-
-
+import { LoginWrapper, BackIcon, MyAddress, Inputs, SaveButton, Form, AdressHeader } from './style';
+import { routes } from "../Router"
+import { replace } from "connected-react-router"
 
 export class PageAddressRegistration extends React.Component {
     constructor(props) {
@@ -19,6 +18,12 @@ export class PageAddressRegistration extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
+    }
 
     handleInputChange = (event) => {
         const { name, value } = event.target
@@ -30,6 +35,9 @@ export class PageAddressRegistration extends React.Component {
                
        this.props.addAddress(this.state)
     }
+    handleClick = () => {
+        this.props.backToSignUp()
+    }
 
     render() {
         const { street, number, neighbourhood, city, state, complement } = this.state
@@ -37,7 +45,9 @@ export class PageAddressRegistration extends React.Component {
         return (
             <LoginWrapper>
 
-                <Logo src={imgLogo} />
+                <AdressHeader>
+                    <BackIcon onClick={this.handleClick}/>
+                </AdressHeader>
 
                 <MyAddress>Meu endereço</MyAddress>
 
@@ -99,10 +109,9 @@ export class PageAddressRegistration extends React.Component {
                         value={city}
                         InputProps={{ placeholder: "Cidade" }}
                     />
-
                     <Inputs
-                        name="state"
-                        label="Estado"
+                        name="cpf"
+                        label="CPF"
                         required
                         type="text"
                         variant="outlined"
@@ -121,6 +130,8 @@ export class PageAddressRegistration extends React.Component {
     }
 }
 const mapDispatchToProps = dispatch => ({
-    addAddress: (body) => dispatch(addAddress(body))
+    addAddress: (body) => dispatch(addAddress(body)),
+    backToSignUp: () => dispatch(replace(routes.signUp)),
+    goToLoginScreen: () => dispatch(replace(routes.login))
 })
 export default connect(null, mapDispatchToProps)(PageAddressRegistration);

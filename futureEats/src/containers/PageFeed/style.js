@@ -7,7 +7,7 @@ export const FeedWrapper = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 64px 72px 42px 1fr 49px;
+    grid-template-rows: 44px 72px 42px 1fr 49px;
     justify-items:center;
     align-items:center;
 `
@@ -21,7 +21,7 @@ export const LogoWrapper = styled.div`
 `
 
 export const Logo = styled(Typography)`
-    margin-top: 33px;
+    margin: auto;
     font-size: 16px;
 `
 

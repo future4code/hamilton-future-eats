@@ -8,7 +8,7 @@ import { replace } from "connected-react-router"
 import {updateProfile} from '../../actions/user'
 import {getProfile} from '../../actions/user'
 
-export class PageEditProfile extends React.Component {
+export class PageEditAddress extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -49,28 +49,58 @@ export class PageEditProfile extends React.Component {
                     
                         <BackIcon onClick={this.handleClick}/>
                    
-                    <ProfileText>Editar</ProfileText>
+                    <ProfileText>Endereço</ProfileText>
                 </ProfileHeader>
                 <EditProfileForm onSubmit={this.handleSubmit}>
                     <Inputs
-                        name="name"                        
-                        label="Nome"
+                        name="street"                        
+                        label="Logradouro"
                         required
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        value={this.state.name}        
-                        InputProps={{ placeholder: user.name }}          
+                        // value={street}        
+                        InputProps={{ placeholder: "Rua / Av.",}}         
                     />
                     <Inputs
-                        name="email"
-                        label="E-mail"
+                        name="number"
+                        label="Número"
                         required
                         type="email"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        value= {this.state.email}   
-                        InputProps={{ placeholder: user.email }}                 
+                        //value= {number}   
+                        InputProps={{ placeholder: "Número",}}                
+                    />
+                    <Inputs
+                        name="complement"
+                        label="Complemento"
+                        required
+                        type="text"
+                        variant="outlined"
+                        onChange={this.handleInputChange}
+                        //value= {complement}         
+                        InputProps={{ placeholder: user.cpf }}           
+                    />
+                    <Inputs
+                        name="neighbourhood"
+                        label="Bairro"
+                        required
+                        type="text"
+                        variant="outlined"
+                        onChange={this.handleInputChange}
+                        //value= {neighbourhood}         
+                        InputProps={{ placeholder: user.cpf }}           
+                    />
+                    <Inputs
+                        name="city"
+                        label="Cidade"
+                        required
+                        type="text"
+                        variant="outlined"
+                        onChange={this.handleInputChange}
+                        //value= {city}         
+                        InputProps={{ placeholder: user.cpf }}           
                     />
                     <Inputs
                         name="cpf"
@@ -79,7 +109,7 @@ export class PageEditProfile extends React.Component {
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        value= {this.state.cpf}         
+                        //value={state}       
                         InputProps={{ placeholder: user.cpf }}           
                     />
                 <EntrarButton type="submit" color="primary" variant="contained">
@@ -104,4 +134,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageEditProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(PageEditAddress);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { signUp } from "../../actions/user"
 import { connect } from "react-redux"
-import { push } from "connected-react-router"
+import { push, replace } from "connected-react-router"
 import { routes } from "../Router"
-import { LoginWrapper, Logo, Create, Inputs, CreateButton, Form, Icon } from './style';
+import { SignUpHeader, LoginWrapper, Logo, Create, Inputs, CreateButton, Form, Icon } from './style';
 import imgLogo from '../../imgs/logo-future-eats-invert.png'
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
@@ -53,13 +53,11 @@ export class PageSignUp extends React.Component {
 
         return (
             <LoginWrapper>
-                <Icon>
-                    <h3
-                        onClick={this.props.goToLoginScreen}>
-                        <FaAngleLeft />
-                    </h3>
-                </Icon>
-
+                <SignUpHeader>
+                    <Icon>            
+                        <FaAngleLeft onClick={this.props.goToLoginScreen}/>   
+                    </Icon>
+                </SignUpHeader>
                 <Logo src={imgLogo} />
                 <Create>Cadastrar</Create>
                 <Form onSubmit={this.handleSubmmit}>
@@ -168,7 +166,7 @@ export class PageSignUp extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    goToLoginScreen: () => dispatch(push(routes.login)),
+    goToLoginScreen: () => dispatch(replace(routes.login)),
     goToAddress: () => dispatch(push(routes.addressRegistration)),
     signUp: (name, email, cpf, password) => dispatch(signUp(name, email,cpf, password))
 })

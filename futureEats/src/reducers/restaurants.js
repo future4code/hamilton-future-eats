@@ -4,7 +4,6 @@ const initialState = {
 }
 
 const restaurants = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case ('SET_RESTAURANTS'): {
             return { ...state, restaurants: action.payload.restaurants}

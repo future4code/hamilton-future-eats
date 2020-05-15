@@ -40,10 +40,18 @@ export const CreateButton = styled(Button)`
     margin-top: 16px;
     
 `   
-export const Icon = styled.div`
-    border-bottom: solid 0.1px #bdc3c7;
+export const SignUpHeader = styled.div `
+    height: 44px;
     width: 100%;
-    
+    border-bottom: solid 0.1px #bdc3c7;
+    display: flex; 
+    align-items: center;
+`
+export const Icon = styled.div`
+    margin-left: 16px;
+    padding: auto;
+    width: fit-content;
+    height: fit-content;
 `
 
 
