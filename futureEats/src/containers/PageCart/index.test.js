@@ -22,7 +22,9 @@ import {PageCart} from './index'
 describe ("Testing Cart Page", () => {
     test("Finding subComponents", () => {
         //preparação
-        const renderedComponent = shallow(<PageCart/>)
+        const mockFunction = jest.fn()
+
+        const renderedComponent = shallow(<PageCart setCurrentPage={mockFunction}/>)
         const findCartWrapper = renderedComponent.find(CartWrapper)
         const findTitle = renderedComponent.find(Title) 
         const findDeliveryAdressWrapper = renderedComponent.find(DeliveryAddressWrapper)
@@ -59,10 +61,13 @@ describe ("Testing Cart Page", () => {
     test("handleOnClick", () => {
         //preparação
         const mockOnClick = jest.fn()
+        const mockFunction = jest.fn()
+
         const event = { preventDefault: () => {} };
         const renderedComponent = shallow(
             <PageCart 
             onClick={mockOnClick}
+            setCurrentPage={mockFunction}
             >Confirmar
             </PageCart>
             )

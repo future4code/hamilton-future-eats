@@ -8,7 +8,7 @@ height: ${({orders}) => (orders ? '50' : 'auto')};
 align-items: center;
 display: flex;
 flex-direction: column;
-padding: 0 4px 0 16px;
+padding: 12px 4px 0 16px;
 `
 
 export const IfEmpty = styled(Typography)`
@@ -34,6 +34,7 @@ justify-content: space-evenly;
 
 export const RestaurantName = styled(Typography)`
 font-size: 16px;
+font-weight: 700;
 color: #5cb646;
 `
 

@@ -19,6 +19,7 @@ import Radio from '@material-ui/core/Radio';
 import OrdersList from '../OrdersList';
 import Footer from '../Footer'
 import {setCurrentPage} from "../../actions/page"
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 
 
@@ -39,8 +40,18 @@ export class PageCart extends React.Component {
 
 
     render() {
-        const { orders } = this.state
-        const {  } = this.props
+        const { orders } = this.props
+
+        const theme = createMuiTheme({
+            palette: {
+              primary: {
+                main: "#5cb646",
+              },
+              secondary: {
+                main: '#000000'
+              }
+            }
+          });
         
         return (
             <CartWrapper>
@@ -48,25 +59,27 @@ export class PageCart extends React.Component {
 
                 <DeliveryAddressWrapper>
                     <AddressTitle>Endereço de Entrega</AddressTitle>
-                    <Address>Rua dos Miserávi, nº 42</Address>
+                    <Address>PEGAR DO REDUCER</Address>
                 </DeliveryAddressWrapper>
 
                 <OrdersList/>
                 
                 <PaymentWrapper
-                orders={ orders }
+                orders={orders}
                 >
                     <DeliveryPrice>Frete R$ 00,00</DeliveryPrice>
                     <TotalPrice>
-                        <SubTotalTitle>SubTotal</SubTotalTitle> 
+                        <SubTotalTitle>SUBTOTAL</SubTotalTitle> 
                         <SubTotalPrice>R$ 00,00</SubTotalPrice>
                     </TotalPrice>
                     <PaymentMethod>
                         <PaymentTitle>Forma de Pagamento</PaymentTitle>
-                        <PaymentRadioGroup>
-                            <RadioPayment control={<Radio />} value="dinheiro" label='Dinheiro'/>
-                            <RadioPayment control={<Radio />} value="credito" label='Cartão de Crédito'/>
-                        </PaymentRadioGroup>
+                        <MuiThemeProvider theme={theme}>
+                            <PaymentRadioGroup>
+                                <RadioPayment  control={<Radio color='secondary'/>} value="dinheiro" label='Dinheiro'/>
+                                <RadioPayment control={<Radio color='secondary'/>} value="credito" label='Cartão de Crédito'/>
+                            </PaymentRadioGroup>
+                        </MuiThemeProvider>
                     </PaymentMethod>
                 </PaymentWrapper>
 
@@ -85,10 +98,14 @@ export class PageCart extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    orders: state.orders.orders,
+})
+
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(PageCart);
+export default connect(mapStateToProps, mapDispatchToProps)(PageCart);

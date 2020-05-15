@@ -1,20 +1,13 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 import { 
-    OrdersListWrapper, 
-    IfEmpty, 
+    OrdersListWrapper,
     OrderWrapper,
+    IfEmpty, 
     RestaurantInfo,
     RestaurantName, 
     RestaurantAddress,
     ExpectedTime,
-    OrderCard,
-    OrderImg,
-    OrderName,
-    OrderNumber,
-    OrderDescription,
-    OrderRemove,
-    OrderPrice,
     } from './style';
 import {OrdersList} from './index'
 
@@ -23,24 +16,42 @@ import {OrdersList} from './index'
 describe ("Testing OrdersList", () => {
     test("Finding subComponents of cart with items", () => {
         //preparação
-        const renderedComponent = shallow(<OrdersList/>)
+        const mockFunction = jest.fn()
+        const mockOrderProps = [
+        {
+            category: 'Refeição',
+            description: 'A tradição italiana na sua casa',
+            id: 'FcAp6stw4Essna5JdTKS',
+            name: 'Penne do Campo',
+            photoUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/1b7b1a90-043d-45d6-9932-2903b304b956/201905291247_x5ae_c.jpg',
+            price: 32,
+        }
+    ]
+        const mockRestaurantProps = 
+        {
+            id: "1",
+            name: "Habibs",
+            logoUrl: "http://soter.ninja/futureFoods/logos/habibs.jpg",
+            deliveryTime: 60,
+            category: "Árabe",
+            description: "Habib's é uma rede de restaurantes de comida rápida brasileira especializada em culinária árabe, os restaurantes vendem mais de 600 milhões de esfirras por ano. A empresa emprega 22 mil colaboradores e tem 421 unidades distribuídas em mais de cem municípios em 20 unidades federativas.",
+            shipping: 6,
+            address: "Rua das Margaridas, 110 - Jardim das Flores"
+        }
 
-        renderedComponent.setState({orders: true})
+        const renderedComponent = shallow(<OrdersList 
+            getRestaurantDetail={mockFunction}
+            orders = {mockOrderProps}
+            restaurant = {mockRestaurantProps}
+            />)
+
 
         const findOrdersListWrapper = renderedComponent.find(OrdersListWrapper)
-        const findIfEmpty = renderedComponent.find(IfEmpty) 
         const findOrderWrapper = renderedComponent.find(OrderWrapper)
         const findRestaurantInfo = renderedComponent.find(RestaurantInfo)
         const findRestaurantName = renderedComponent.find(RestaurantName)
         const findRestaurantAddress = renderedComponent.find(RestaurantAddress)
         const findExpectedTime = renderedComponent.find(ExpectedTime)
-        // const findOrderCard = renderedComponent.find(OrderCard)
-        // const findOrderImg = renderedComponent.find(OrderImg)
-        // const findOrderName = renderedComponent.find(OrderName)
-        // const findOrderNumber = renderedComponent.find(OrderNumber)
-        // const findOrderDescription = renderedComponent.find(OrderDescription)
-        // const findOrderRemove = renderedComponent.find(OrderRemove)
-        // const findOrderPrice = renderedComponent.find(OrderPrice)
 
         //verificação
         expect(findOrdersListWrapper).toHaveLength(1);
@@ -49,23 +60,17 @@ describe ("Testing OrdersList", () => {
         expect(findRestaurantName).toHaveLength(1);
         expect(findRestaurantAddress).toHaveLength(1);
         expect(findExpectedTime).toHaveLength(1);
-        // expect(findOrderImg).toHaveLength(1);
-        // expect(findOrderCard).toHaveLength(1);
-        // expect(findOrderName).toHaveLength(1);
-        // expect(findOrderNumber).toHaveLength(1);
-        // expect(findOrderDescription).toHaveLength(1);
-        // expect(findOrderRemove).toHaveLength(2);
-        // expect(findOrderPrice).toHaveLength(1);
     })
-    test("Finding subComponents of empty cart", () => {
-        //preparação
-        const renderedComponent = shallow(<OrdersList/>)
+    // test("Finding subComponents of empty cart", () => {
+    //     //preparação
+    //     const mockFunction = jest.fn()
 
-        renderedComponent.setState({orders: false})
+    //     const renderedComponent = shallow(<OrdersList getRestaurantDetail={mockFunction}/>)
+    //     renderedComponent.setState({orders: false})
 
-        const findIfEmpty = renderedComponent.find(IfEmpty) 
+    //     const findIfEmpty = renderedComponent.find(IfEmpty) 
 
-        //verificação
-        expect(findIfEmpty).toHaveLength(1);
-    })
+    //     //verificação
+    //     expect(findIfEmpty).toHaveLength(1);
+    // })
 })

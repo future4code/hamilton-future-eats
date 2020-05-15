@@ -99,6 +99,7 @@ export const RadioPayment = styled(FormControlLabel)`
     height: 18px;
     padding: 14px 0;
     font-size: 16px;
+    color: black;
 `
 
 export const ConfirmButton = styled(Button)`
