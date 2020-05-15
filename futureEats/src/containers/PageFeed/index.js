@@ -8,13 +8,15 @@ import { getRestaurants } from "../../actions/restaurants";
 import SearchBar from "../SearchBar"
 import { replace } from 'connected-react-router';
 import { routes } from "../Router"
+import { getRestaurantDetail } from '../../actions/restaurants'
 
 class PageFeed extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             search: "",
-            currentFilter: false
+            currentFilter: false,
+            activeOption: 2
         }
     }
 
@@ -34,7 +36,7 @@ class PageFeed extends React.Component {
     }
 
     renderRestaurants = () => {
-        const { restaurants } = this.props;
+        const { restaurants, getRestaurantDetail } = this.props;
         const {currentFilter} = this.state;
         let filteredRestaurants = restaurants;
 
@@ -54,6 +56,7 @@ class PageFeed extends React.Component {
                         logoUrl={element.logoUrl}
                         shipping={element.shipping}
                         deliveryTime={element.deliveryTime}
+                        onClick={() => getRestaurantDetail(element.id)}                        
                     />
                 )
             })
@@ -62,14 +65,16 @@ class PageFeed extends React.Component {
 
     renderOptions = () => {
         const { restaurants } = this.props
-        let valueActiveOption = 1
+        let valueActiveOption = 0
 
         return (
             restaurants.map(element => {
+                valueActiveOption += 1
+
                 return (
                     <OptionText
-                        activeOption = {valueActiveOption}
-                        onClick={() => this.handleFilter(element.category)}
+                        activeOption = {this.state.activeOption}
+                        onClick={() => this.handleFilter(element.category, valueActiveOption.value)}
                     >
                         {element.category}
                     </OptionText>
@@ -78,10 +83,11 @@ class PageFeed extends React.Component {
         )
     }
 
-    handleFilter = (filter) => {
-
+    handleFilter = (filter, valueActiveOption) => {
+        console.log(valueActiveOption)
         this.setState({
             currentFilter: filter,
+            activeOption: valueActiveOption
         })
     }
 
@@ -116,7 +122,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
         getRestaurants: () => dispatch(getRestaurants()),
-        goToLoginScreen: () => dispatch(replace(routes.login))
+        goToLoginScreen: () => dispatch(replace(routes.login)),
+        getRestaurantDetail: (restaurantId) => dispatch(getRestaurantDetail(restaurantId))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PageFeed);

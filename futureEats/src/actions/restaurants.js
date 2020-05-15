@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { routes } from "../containers/Router"
+import { push } from "connected-react-router"
+
 const getToken = () => localStorage.getItem("token");
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
@@ -36,17 +39,18 @@ export const getRestaurants = () => async (dispatch) => {
     }
 };
 
-export const getRestaurantDetail = () => async (dispatch) => {
+export const getRestaurantDetail = (restaurantId) => async (dispatch) => {
     try {
         const response = await axios.get(
-            `${baseUrl}/restaurants/${3}`, {
+            `${baseUrl}/restaurants/${restaurantId}`, {
                 headers: {
                     auth: getToken(),
                 }
             }
         )
-        
+
         dispatch(setRestaurantDetail(response.data.restaurant))
+        dispatch(push(routes.restaurant))
     } catch (error) {
         console.error(error)
     }
