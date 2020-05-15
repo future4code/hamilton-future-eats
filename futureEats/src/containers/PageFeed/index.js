@@ -62,11 +62,13 @@ class PageFeed extends React.Component {
 
     renderOptions = () => {
         const { restaurants } = this.props
+        let valueActiveOption = 1
 
         return (
             restaurants.map(element => {
                 return (
                     <OptionText
+                        activeOption = {valueActiveOption}
                         onClick={() => this.handleFilter(element.category)}
                     >
                         {element.category}
@@ -79,11 +81,11 @@ class PageFeed extends React.Component {
     handleFilter = (filter) => {
 
         this.setState({
-            currentFilter: filter
+            currentFilter: filter,
         })
     }
 
-    render() {
+    render() {      
         return (
             <FeedWrapper>
                 <LogoWrapper>

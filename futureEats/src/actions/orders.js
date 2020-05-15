@@ -1,5 +1,5 @@
 import axios from 'axios'
-const token = localStorage.getItem("token")
+const getToken = () => localStorage.getItem("token");
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //Síncrona
@@ -36,7 +36,7 @@ export const placeOrder = (body, restaurantId) => async (dispatch) => {
         const response = await axios.post(
             `${baseUrl}/restaurants/${restaurantId}/order`, body, {
             headers: {
-                auth: token,
+                auth: getToken,
             }
         }
         )
@@ -51,7 +51,7 @@ export const getActiveOrder = () => async (dispatch) => {
         const response = await axios.get(
             `${baseUrl}/active-order`, {
             headers: {
-                auth: token,
+                auth: getToken,
             }
         }
         )
@@ -66,7 +66,7 @@ export const getOrdersHistory = () => async (dispatch) => {
         const response = await axios.get(
             `${baseUrl}/orders/history`, {
                 headers: {
-                    auth: token,
+                    auth: getToken,
                 }
             }
         )

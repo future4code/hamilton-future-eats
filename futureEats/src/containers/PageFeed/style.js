@@ -37,6 +37,12 @@ export const NavBar = styled.div`
 export const OptionText = styled(Typography)`
     padding: 8px;
     font-size: 18px;
+
+    :nth-of-type(${props => props.activeOption}){
+       && {
+         color: green;  
+       } 
+    }
 `
 
 export const ContentWrapper = styled.div`

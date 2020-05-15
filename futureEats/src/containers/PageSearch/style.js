@@ -27,3 +27,11 @@ export const Logo = styled(Typography)`
 `
 export const BackIcon = styled(FaAngleLeft) `
 `
+export const ResultsWrapper = styled.div `
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
