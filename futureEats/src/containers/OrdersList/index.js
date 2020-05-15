@@ -29,11 +29,10 @@ export class OrdersList extends React.Component {
     }
 
     render() {
-        const { quantity } = this.state
-        const { orders, restaurant, addItem} = this.props
+        const { orders, restaurant, addItem, quantity} = this.props
         return (
             <OrdersListWrapper>
-                    {orders && restaurant ? (
+                    {orders[0] && restaurant ? (
                         <OrderWrapper>
                             <RestaurantInfo>
                                 <RestaurantName>{restaurant.name}</RestaurantName>
@@ -49,6 +48,7 @@ export class OrdersList extends React.Component {
                             description={product.description}
                             price={product.price}
                             addItem={addItem}
+                            quantity={product.quantity}
                             />
                         ))
                         }
