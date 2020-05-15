@@ -25,7 +25,10 @@ color: #5cb646;
 padding-left: 16px;
 font-size: 16px;
 grid-column: 4/10;
-grid-row: 2/3;
+grid-row: 1/3;
+height: 46px;
+display: flex;
+align-items: center;
 `
 
 export const OrderNumber = styled(Typography)`
@@ -43,9 +46,9 @@ justify-content: center;
 export const OrderDescription = styled(Typography)`
 font-size: 12px;
 color: #b8b8b8;
-grid-row: 3/7;
+grid-row: 4/7;
 grid-column: 4/10;
-padding: 6px 0 0 16px;
+padding: 8px 0 0 16px;
 overflow-y: scroll;
 `
 
@@ -61,6 +64,7 @@ export const OrderButton = styled(Typography)`
 color: ${({status}) => (status ? '#5cb646' : '#e02020')};
 border-top: 1px solid ${({status}) => (status ? '#5cb646' : '#e02020')};
 border-left: 1px solid ${({status}) => (status ? '#5cb646' : '#e02020')};
+min-height: 31px;
 border-radius: 8px 0;
 grid-column: 8/11;
 grid-row: 7/11;
