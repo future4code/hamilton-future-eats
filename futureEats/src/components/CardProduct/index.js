@@ -4,7 +4,7 @@ import { ProductWrapper, ImageWrapper, LogoRestaurant, NameRestaurant, ShippingP
 
 export default function CardProduct(props) {
     return (
-        <ProductWrapper>
+        <ProductWrapper onClick={props.onClick}>
             <ImageWrapper>
                 <LogoRestaurant src={props.logoUrl} />
             </ImageWrapper>

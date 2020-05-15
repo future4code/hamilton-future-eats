@@ -30,7 +30,7 @@ export class PageRestaurant extends React.Component {
 
     componentDidMount(){
         // this.props.getActiveOrder();
-        this.props.getRestaurantDetail()
+       // this.props.getRestaurantDetail()
     }
 
     handleAddToCart = ( newOrder ) => {
