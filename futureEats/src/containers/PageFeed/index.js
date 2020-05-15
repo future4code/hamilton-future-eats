@@ -6,7 +6,8 @@ import Footer from "../Footer";
 import { setCurrentPage } from "../../actions/page";
 import { getRestaurants } from "../../actions/restaurants";
 import SearchBar from "../SearchBar"
-
+import { replace } from 'connected-react-router';
+import { routes } from "../Router"
 
 class PageFeed extends React.Component {
     constructor(props) {
@@ -18,8 +19,13 @@ class PageFeed extends React.Component {
     }
 
     componentDidMount() {
-        this.props.setCurrentPage(1);
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
         this.props.getRestaurants();
+        this.props.setCurrentPage(1);
+       
     }
 
     handleInputChange = (event) => {
@@ -101,13 +107,14 @@ class PageFeed extends React.Component {
 
 const mapStateToProps = (state) => ({
     restaurants: state.restaurants.restaurants
+
 })
 
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
         getRestaurants: () => dispatch(getRestaurants()),
-
+        goToLoginScreen: () => dispatch(replace(routes.login))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PageFeed);

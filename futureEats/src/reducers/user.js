@@ -4,7 +4,6 @@ const initialState = {
 }
 
 const user = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case('SET_FULL_ADDRESS'): {
             return { ...state, fullAddress: action.payload.fullAddress}

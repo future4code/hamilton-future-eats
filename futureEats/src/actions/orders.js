@@ -72,6 +72,7 @@ export const ordersHistory = () => async (dispatch) => {
                 }
             }
         )
+        console.log("chegamos na ação assíncrona no order history")
         dispatch(setOrdersHistory(response.data.orders))
     }catch (error) {
         console.error(error)

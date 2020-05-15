@@ -17,7 +17,7 @@ export function setProfile(profile) {
   return {
     type: 'SET_PROFILE',
     payload: {
-      profile: profile
+      user: profile
     }
   }
 }
@@ -94,7 +94,7 @@ export const getFullAddress = () => async (dispatch) => {
   }
 }
 
-export const getProfile = () => async (dispatch) => {
+export const getProfile = (token) => async (dispatch) => {
   const token = localStorage.getItem("token");
 
   try {

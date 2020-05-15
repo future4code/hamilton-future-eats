@@ -12,6 +12,7 @@ import PageError from "../PageError"
 import PageEditProfile from "../PageEditProfile"
 import PageHome from "../PageHome";
 import PageSearch from "../PageSearch"
+import PageEditAddress from "../PageEditAddress"
 
 export const routes = {
   home: "/",
@@ -23,6 +24,7 @@ export const routes = {
   restaurant: "/restaurant",
   cart: "/restaurant/cart",
   addressRegistration: "/profile/address",
+  editAddress: "/profile/editAddress",
   error: "/",
   search: "/feed/search",
 };
@@ -40,6 +42,7 @@ function Router(props) {
         <Route exact path={routes.restaurant} component={PageRestaurant} />
         <Route exact path={routes.cart} component={PageCart} />
         <Route exact path={routes.addressRegistration} component={PageAddressRegistration} />
+        <Route exact path={routes.editAddress} component={PageEditAddress} />
         <Route exact path={routes.search} component={PageSearch} />
         <Route path={routes.error} component={PageError} />
         
