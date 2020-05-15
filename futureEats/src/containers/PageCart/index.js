@@ -14,12 +14,11 @@ import { CartWrapper,
     PaymentTitle,
     PaymentRadioGroup,
     RadioPayment,
+    RadioCustom,
     ConfirmButton } from './style';
-import Radio from '@material-ui/core/Radio';
 import OrdersList from '../OrdersList';
 import Footer from '../Footer'
 import {setCurrentPage} from "../../actions/page"
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 
 
@@ -27,33 +26,33 @@ export class PageCart extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: "1",
+            subTotalPrice: 0,
         }
     }
     componentDidMount() {
         this.props.setCurrentPage(2);
+        this.subtotalSum()
     }
 
     hendleOnClick = (event) => {
         event.preventDefault()
     }
 
+    subtotalSum = () => {
+        let subtotal = 0
+        this.props.orders.forEach( product => {
+            subtotal = (product.price * product.quantity) + subtotal
+        })
+        subtotal = subtotal+this.props.orders.shipping
+        this.setState({ subTotalPrice: subtotal })
+
+    }
 
     render() {
-        const { orders } = this.props
+        const { orders, restaurantDetail } = this.props
+        const { subTotalPrice } = this.state
 
-        const theme = createMuiTheme({
-            palette: {
-              primary: {
-                main: "#5cb646",
-              },
-              secondary: {
-                main: '#000000'
-              }
-            }
-          });
 
-        
         return (
             <CartWrapper>
                 <Title>Meu Carrinho</Title>
@@ -68,19 +67,17 @@ export class PageCart extends React.Component {
                 <PaymentWrapper
                 orders={orders[0]}
                 >
-                    <DeliveryPrice>Frete R$ 00,00</DeliveryPrice>
+                    <DeliveryPrice>Frete R${restaurantDetail.shipping}</DeliveryPrice>
                     <TotalPrice>
                         <SubTotalTitle>SUBTOTAL</SubTotalTitle> 
-                        <SubTotalPrice>R$ 00,00</SubTotalPrice>
+                        <SubTotalPrice>R$ {subTotalPrice}</SubTotalPrice>
                     </TotalPrice>
                     <PaymentMethod>
                         <PaymentTitle>Forma de Pagamento</PaymentTitle>
-                        <MuiThemeProvider theme={theme}>
                             <PaymentRadioGroup>
-                                <RadioPayment  control={<Radio color='secondary'/>} value="dinheiro" label='Dinheiro'/>
-                                <RadioPayment control={<Radio color='secondary'/>} value="credito" label='Cartão de Crédito'/>
+                                <RadioPayment  control={<RadioCustom color='secondary'/>} value="dinheiro" label='Dinheiro'/>
+                                <RadioPayment control={<RadioCustom color='secondary'/>} value="credito" label='Cartão de Crédito'/>
                             </PaymentRadioGroup>
-                        </MuiThemeProvider>
                     </PaymentMethod>
                 </PaymentWrapper>
 
@@ -101,6 +98,7 @@ export class PageCart extends React.Component {
 
 const mapStateToProps = (state) => ({
     orders: state.orders.orders,
+    restaurantDetail: state.restaurants.restaurantDetail
 })
 
 const mapDispatchToProps = dispatch => {

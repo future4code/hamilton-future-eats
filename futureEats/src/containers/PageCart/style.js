@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Radio from '@material-ui/core/Radio';
 
 
 export const CartWrapper = styled.div`
@@ -101,7 +102,11 @@ export const RadioPayment = styled(FormControlLabel)`
     font-size: 16px;
     color: black;
 `
-
+export const RadioCustom = styled(Radio)`
+    && {
+        color: #000000
+    }
+`
 export const ConfirmButton = styled(Button)`
     width: 328px;
     height: 42px;
