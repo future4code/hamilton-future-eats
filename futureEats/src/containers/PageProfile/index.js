@@ -8,17 +8,18 @@ import {
 import { push } from "connected-react-router";
 import { routes } from '../Router'
 import Footer from '../Footer'
-import {setCurrentPage} from "../../actions/page"
+import { setCurrentPage } from "../../actions/page"
 import { replace } from "connected-react-router"
-import {getProfile} from '../../actions/user'
-import {ordersHistory} from '../../actions/orders'
+import { getProfile } from '../../actions/user'
+import { getOrdersHistory } from '../../actions/orders'
+import {OrderCard} from '../../components/OrderCard'
 
 export class PageProfile extends React.Component {
 
     componentDidMount() {
         const token = localStorage.getItem("token")
         this.props.getProfile(token)
-        this.props.ordersHistory()
+        this.props.getOrdersHistory()
         if (token === null) {
             this.props.goToLoginScreen()
         }
@@ -32,8 +33,35 @@ export class PageProfile extends React.Component {
         this.props.goToEditAdress()
     }
 
+    renderOrdersHistory = () => {
+        const {ordersHistory} = this.props
+
+        return (
+            ordersHistory.map(order => {
+                return (
+
+                    <HistPedidosCard>
+                        <PedidoPlaceText>
+                            {order.restaurantName}
+                        </PedidoPlaceText>
+                        <PedidoDateText>
+                            23 outubro 2019
+                        </PedidoDateText>
+                        <SubtotalText>
+                            Subtotal R${order.totalPrice}
+                        </SubtotalText>
+                    </HistPedidosCard>
+                
+                    
+                )
+            })
+        )
+    }
+
     render() {
-        const {user} = this.props
+        const { user, ordersHistory } = this.props
+        console.log('estamos aqui')
+        console.log(ordersHistory)
         return (
             <ProfileWrapper>
                 <ProfileHeader>
@@ -41,7 +69,7 @@ export class PageProfile extends React.Component {
                 </ProfileHeader>
                 <ProfileInfosWrapper>
                     <ProfileInfos>
-                        <ProfileText>{user.name}</ProfileText> 
+                        <ProfileText>{user.name}</ProfileText>
                         <ProfileText>{user.email}</ProfileText>
                         <ProfileText>{user.cpf}</ProfileText>
                     </ProfileInfos>
@@ -66,52 +94,10 @@ export class PageProfile extends React.Component {
                     </ProfileText>
                 </ProfileInfosWrapper>
 
-                <HistPedidosWrapper>
-                    <HistPedidosCard>
-                        <PedidoPlaceText>
-                            Bullguer Vila Madalena
-                        </PedidoPlaceText>
-                        <PedidoDateText>
-                            23 outubro 2019
-                        </PedidoDateText>
-                        <SubtotalText>
-                            Subtotal R$67,00
-                        </SubtotalText>
-                    </HistPedidosCard>
-                    <HistPedidosCard>
-                        <PedidoPlaceText>
-                            Vila Burguer  Butantã
-                        </PedidoPlaceText>
-                        <PedidoDateText>
-                            30 setembro 2019
-                        </PedidoDateText>
-                        <SubtotalText>
-                            Subtotal R$89,00
-                        </SubtotalText>
-                    </HistPedidosCard>
-                    <HistPedidosCard>
-                        <PedidoPlaceText>
-                            Bullguer Vila Madalena
-                        </PedidoPlaceText>
-                        <PedidoDateText>
-                            23 outubro 2019
-                        </PedidoDateText>
-                        <SubtotalText>
-                            Subtotal R$77,00
-                        </SubtotalText>
-                    </HistPedidosCard>
-                    <HistPedidosCard>
-                        <PedidoPlaceText>
-                            Bullguer Vila Madalena
-                        </PedidoPlaceText>
-                        <PedidoDateText>
-                            23 outubro 2019
-                        </PedidoDateText>
-                        <SubtotalText>
-                            Subtotal R$77,00
-                        </SubtotalText>
-                    </HistPedidosCard>
-                </HistPedidosWrapper>
+            <HistPedidosWrapper>
+            {this.renderOrdersHistory()}
+
+            </HistPedidosWrapper>
 
                 <Footer />
 
@@ -121,7 +107,7 @@ export class PageProfile extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user.user,  
+    user: state.user.user,
     ordersHistory: state.orders.ordersHistory
 })
 
@@ -130,8 +116,8 @@ const mapDispatchToProps = dispatch => ({
     setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
     goToLoginScreen: () => dispatch(replace(routes.login)),
     getProfile: (token) => dispatch(getProfile(token)),
-    ordersHistory: () => dispatch(ordersHistory()),
-    goToEditAdress:() => dispatch(push(routes.editAddress)),
+    getOrdersHistory: () => dispatch(getOrdersHistory()),
+    goToEditAdress: () => dispatch(push(routes.editAddress)),
 
 })
 

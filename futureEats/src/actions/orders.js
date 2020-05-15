@@ -61,7 +61,7 @@ export const getActiveOrder = () => async (dispatch) => {
     }
 }
 
-export const ordersHistory = () => async (dispatch) => {
+export const getOrdersHistory = () => async (dispatch) => {
     try{
         const response = await axios.get(
             `${baseUrl}/orders/history`, {
@@ -70,7 +70,6 @@ export const ordersHistory = () => async (dispatch) => {
                 }
             }
         )
-        console.log("chegamos na ação assíncrona no order history")
         dispatch(setOrdersHistory(response.data.orders))
     }catch (error) {
         console.error(error)

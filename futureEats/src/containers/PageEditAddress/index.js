@@ -5,17 +5,20 @@ EditProfileForm, BackIcon} from '../PageProfile/style';
 import { Inputs, EntrarButton } from '../PageLogin/style'
 import { routes } from "../Router"
 import { replace } from "connected-react-router"
-import {updateProfile} from '../../actions/user'
-import {getProfile} from '../../actions/user'
+import {updateProfile, updateAddress, getProfile } from '../../actions/user'
+
 
 export class PageEditAddress extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
-            email: '',
-            cpf: ''
-            }
+            street: '',
+            number: '',
+            complement: '',
+            neighbourhood: '',
+            city: '',
+            state: ''
+        }
     }
 
     componentDidMount() {
@@ -33,16 +36,15 @@ export class PageEditAddress extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const body = this.state
-        this.props.updateProfile(body)
-        this.props.goToProfile()
+        this.props.updateAddress(body)
     }
     handleClick = () => {
         this.props.goToProfile()
     }
 
     render() {
-        const {user} = this.props
-        const body = this.state
+        const { street, number, neighbourhood, city, state, complement } = this.state
+
         return (
             <ProfileWrapper>
                 <ProfileHeader>
@@ -59,28 +61,24 @@ export class PageEditAddress extends React.Component {
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        // value={street}        
-                        InputProps={{ placeholder: "Rua / Av.",}}         
+                        value={street}             
                     />
                     <Inputs
                         name="number"
                         label="Número"
                         required
-                        type="email"
+                        type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        //value= {number}   
-                        InputProps={{ placeholder: "Número",}}                
+                        value= {number}                 
                     />
                     <Inputs
                         name="complement"
                         label="Complemento"
-                        required
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        //value= {complement}         
-                        InputProps={{ placeholder: user.cpf }}           
+                        value= {complement}                 
                     />
                     <Inputs
                         name="neighbourhood"
@@ -89,8 +87,7 @@ export class PageEditAddress extends React.Component {
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        //value= {neighbourhood}         
-                        InputProps={{ placeholder: user.cpf }}           
+                        value= {neighbourhood}                 
                     />
                     <Inputs
                         name="city"
@@ -99,18 +96,16 @@ export class PageEditAddress extends React.Component {
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        //value= {city}         
-                        InputProps={{ placeholder: user.cpf }}           
+                        value= {city}                 
                     />
                     <Inputs
-                        name="cpf"
-                        label="CPF"
+                        name="state"
+                        label="Estado"
                         required
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        //value={state}       
-                        InputProps={{ placeholder: user.cpf }}           
+                        value={state}               
                     />
                 <EntrarButton type="submit" color="primary" variant="contained">
                      Salvar
@@ -122,16 +117,15 @@ export class PageEditAddress extends React.Component {
         )
     }
 }
-const mapStateToProps = (state) => ({
-    user: state.user.user,  
-})
+
 const mapDispatchToProps = dispatch => {
     return {
        updateProfile: (body) => dispatch(updateProfile(body)),
        goToProfile: () => dispatch(replace(routes.profile)),
        goToLoginScreen: () => dispatch(replace(routes.login)),
        getProfile: (token) => dispatch(getProfile(token)),
+       updateAddress: (body) => dispatch(updateAddress(body))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageEditAddress);
+export default connect(null, mapDispatchToProps)(PageEditAddress);
