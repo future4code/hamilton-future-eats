@@ -9,8 +9,6 @@ const initialState = {
             price: 32,
         }
     ],
-    quantity: 3,
-    addItem: false,
     ordersHistory: [],
     activeOrder: []
 }
@@ -18,6 +16,7 @@ const initialState = {
 const orders = (state = initialState, action) => {
     switch (action.type) {
         case ('SET_ORDER'): {
+            console.log(action)
             return { ...state, orders: action.payload.order}
         }
         case ('SET_ACTIVE_ORDER'): {

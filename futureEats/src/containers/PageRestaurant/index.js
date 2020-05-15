@@ -16,7 +16,8 @@ import {
     } from './style';
 import Footer from '../Footer'
 import OrderCard from '../../components/OrderCard'
-import {setCurrentPage} from "../../actions/page"
+import { setCurrentPage } from "../../actions/page"
+import { setOrder } from "../../actions/orders"
 import { getRestaurantDetail } from '../../actions/restaurants'
 
 
@@ -32,9 +33,10 @@ export class PageRestaurant extends React.Component {
         this.props.getRestaurantDetail()
     }
 
-    // hendleOnClick = (event) => {
-    //     event.preventDefault()
-    // }
+    handleAddToCart = ( newOrder ) => {
+        console.log(newOrder)
+        this.props.setOrder( newOrder )
+    }
 
 
     render() {
@@ -93,7 +95,9 @@ export class PageRestaurant extends React.Component {
                                 quantity={quantity}
                                 description={product.description}
                                 price={product.price}
+                                id={product.id}
                                 addItem={addItem}
+                                addToCart={this.handleAddToCart}
                                 />
                             ))) : (
                                 <span> Carregando... </span>
@@ -111,6 +115,7 @@ export class PageRestaurant extends React.Component {
                                 description={product.description}
                                 price={product.price}
                                 addItem={addItem}
+                                addToCart={this.handleAddToCart}
                                 />
                             ))) : (
                                 <span> Carregando... </span>
@@ -128,6 +133,7 @@ export class PageRestaurant extends React.Component {
                                 description={product.description}
                                 price={product.price}
                                 addItem={addItem}
+                                addToCart={this.handleAddToCart}
                                 />
                             ))) : (
                                 <span> Carregando... </span>
@@ -146,13 +152,13 @@ export class PageRestaurant extends React.Component {
 const mapStateToProps = (state) => ({
     restaurant: state.restaurants.restaurantDetail,
     quantity: state.orders.quantity,
-    addItem: state.orders.addItem
 })
 
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
         getRestaurantDetail: () => dispatch(getRestaurantDetail()),
+        setOrder: (newOrder) => dispatch(setOrder(newOrder))
     }
 }
 

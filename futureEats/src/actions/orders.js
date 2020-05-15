@@ -3,11 +3,18 @@ const token = localStorage.getItem("token")
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //Síncrona
-export function setOrder(orderFromApi){
+// export function addToCart(orderSelected){
+//     return{
+//         type: 'ADD_TO_CART',
+//         payload: orderSelected,
+//     }
+// }
+
+export function setOrder(newOrder){
     return {
         type: 'SET_ORDER',
         payload: {
-            orders: orderFromApi
+            orders: newOrder
         }
     }
 }
@@ -55,7 +62,7 @@ export const getActiveOrder = () => async (dispatch) => {
             }
         }
         )
-        dispatch(setActiveOrder(response.data.order))
+        // dispatch(setActiveOrder(response.data.order))
     } catch (error) {
         console.error(error)
     }
