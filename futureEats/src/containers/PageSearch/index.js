@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {SearchWrapper, LogoWrapper, Logo, BackIcon, DivBackIcon} from "./style";
+import {SearchWrapper, LogoWrapper, Logo, BackIcon, DivBackIcon, ResultsWrapper} from "./style";
 import SearchBar from "../SearchBar";
 import CardProduct from "../../components/CardProduct";
 import { getRestaurants } from "../../actions/restaurants";
@@ -21,7 +21,11 @@ class PageSearch extends React.Component{
         const{restaurants, currentSearch}=this.props
 
         const filteredRestaurants = restaurants.filter((element)=>{
-            return (element.name === currentSearch)
+
+            const restaurantsLowerCase = element.name.toLowerCase();
+            const currentSearchLowerCase = currentSearch.toLowerCase();            
+
+            return (restaurantsLowerCase.includes(currentSearchLowerCase))
         })
         
         return (
@@ -45,8 +49,6 @@ class PageSearch extends React.Component{
     render(){
         const{restaurants}=this.props
 
-        console.log(this.props.currentSearch)
-
         return(
             <SearchWrapper>
                 <LogoWrapper>
@@ -60,12 +62,12 @@ class PageSearch extends React.Component{
                     <SearchBar/>
                 </div>
 
-                <div>
+                <ResultsWrapper>
                     {restaurants[0]? 
                                     this.renderSearchRestaurants()
                                     :<p>Não encontramos :(</p>
                     }
-                </div>
+                </ResultsWrapper>
             </SearchWrapper>
         )
     }

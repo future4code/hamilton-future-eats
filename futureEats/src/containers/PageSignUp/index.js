@@ -33,6 +33,19 @@ export class PageSignUp extends React.Component {
         this.setState({ [name]: value })
     }
 
+    handleChangeInputCpf = (event) => {
+        const { name, value } = event.target
+
+        let newCPF = value
+        newCPF = newCPF.replace(/\D/g, ""); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); 
+
+        if (newCPF.length < 15) {
+            this.setState ({cpf: newCPF}) 
+        }           
+    }
     
     handleSubmmit = (event) => {
         event.preventDefault();
@@ -94,7 +107,7 @@ export class PageSignUp extends React.Component {
                         required
                         type="text"
                         variant="outlined"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleChangeInputCpf}
                         value={cpf}
                         InputProps={{ placeholder: "000.000.000-00" }}
                     />

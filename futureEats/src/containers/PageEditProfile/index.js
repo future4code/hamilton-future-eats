@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux"
-import { ProfileWrapper, ProfileHeader, ProfileText, 
-EditProfileForm, BackIcon} from '../PageProfile/style';
+import {
+    ProfileWrapper, ProfileHeader, ProfileText,
+    EditProfileForm, BackIcon
+} from '../PageProfile/style';
 import { Inputs, EntrarButton } from '../PageLogin/style'
 import { routes } from "../Router"
 import { replace } from "connected-react-router"
-import {updateProfile} from '../../actions/user'
-import {getProfile} from '../../actions/user'
+import { updateProfile } from '../../actions/user'
+import { getProfile } from '../../actions/user'
 
 export class PageEditProfile extends React.Component {
     constructor(props) {
@@ -15,7 +17,7 @@ export class PageEditProfile extends React.Component {
             name: '',
             email: '',
             cpf: ''
-            }
+        }
     }
 
     componentDidMount() {
@@ -27,9 +29,24 @@ export class PageEditProfile extends React.Component {
     }
 
     handleInputChange = (event) => {
-        const {name, value} = event.target
+        const { name, value } = event.target
         this.setState({ [name]: value })
     }
+    
+    handleChangeInputCpf = (event) => {
+        const { name, value } = event.target
+
+        let newCPF = value
+        newCPF = newCPF.replace(/\D/g, ""); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); 
+
+        if (newCPF.length < 15) {
+            this.setState ({cpf: newCPF}) 
+        }           
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         const body = this.state
@@ -41,26 +58,26 @@ export class PageEditProfile extends React.Component {
     }
 
     render() {
-        const {user} = this.props
+        const { user } = this.props
         const body = this.state
         return (
             <ProfileWrapper>
                 <ProfileHeader>
-                    
-                        <BackIcon onClick={this.handleClick}/>
-                   
+
+                    <BackIcon onClick={this.handleClick} />
+
                     <ProfileText>Editar</ProfileText>
                 </ProfileHeader>
                 <EditProfileForm onSubmit={this.handleSubmit}>
                     <Inputs
-                        name="name"                        
+                        name="name"
                         label="Nome"
                         required
                         type="text"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        value={this.state.name}        
-                        InputProps={{ placeholder: user.name }}          
+                        value={this.state.name}
+                        InputProps={{ placeholder: user.name }}
                     />
                     <Inputs
                         name="email"
@@ -69,8 +86,8 @@ export class PageEditProfile extends React.Component {
                         type="email"
                         variant="outlined"
                         onChange={this.handleInputChange}
-                        value= {this.state.email}   
-                        InputProps={{ placeholder: user.email }}                 
+                        value={this.state.email}
+                        InputProps={{ placeholder: user.email }}
                     />
                     <Inputs
                         name="cpf"
@@ -78,29 +95,29 @@ export class PageEditProfile extends React.Component {
                         required
                         type="text"
                         variant="outlined"
-                        onChange={this.handleInputChange}
-                        value= {this.state.cpf}         
-                        InputProps={{ placeholder: user.cpf }}           
+                        onChange={this.handleChangeInputCpf}
+                        value={this.state.cpf}
+                        InputProps={{ placeholder: user.cpf}}                        
                     />
-                <EntrarButton type="submit" color="primary" variant="contained">
-                     Salvar
+                    <EntrarButton type="submit" color="primary" variant="contained">
+                        Salvar
                 </EntrarButton>
                 </EditProfileForm>
-                
+
             </ProfileWrapper>
-            
+
         )
     }
 }
 const mapStateToProps = (state) => ({
-    user: state.user.user,  
+    user: state.user.user,
 })
 const mapDispatchToProps = dispatch => {
     return {
-       updateProfile: (body) => dispatch(updateProfile(body)),
-       goToProfile: () => dispatch(replace(routes.profile)),
-       goToLoginScreen: () => dispatch(replace(routes.login)),
-       getProfile: (token) => dispatch(getProfile(token)),
+        updateProfile: (body) => dispatch(updateProfile(body)),
+        goToProfile: () => dispatch(replace(routes.profile)),
+        goToLoginScreen: () => dispatch(replace(routes.login)),
+        getProfile: (token) => dispatch(getProfile(token)),
     }
 }
 

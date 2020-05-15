@@ -35,8 +35,23 @@ export class PageAddressRegistration extends React.Component {
                
        this.props.addAddress(this.state)
     }
+
     handleClick = () => {
         this.props.backToSignUp()
+    }
+
+    handleChangeInputCpf = (event) => {
+        const { name, value } = event.target
+
+        let newCPF = value
+        newCPF = newCPF.replace(/\D/g, ""); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d)/, "$1.$2"); 
+        newCPF = newCPF.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); 
+
+        if (newCPF.length < 15) {
+            this.setState ({cpf: newCPF}) 
+        }           
     }
 
     render() {
@@ -110,8 +125,8 @@ export class PageAddressRegistration extends React.Component {
                         InputProps={{ placeholder: "Cidade" }}
                     />
                     <Inputs
-                        name="cpf"
-                        label="CPF"
+                        name="state"
+                        label="Estado"
                         required
                         type="text"
                         variant="outlined"

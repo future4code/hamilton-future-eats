@@ -1,5 +1,5 @@
 import axios from 'axios'
-const token = localStorage.getItem("token");
+const getToken = () => localStorage.getItem("token");
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //Síncrona
@@ -22,11 +22,12 @@ export function setRestaurantDetail (restaurantDetail) {
 }
 //Assíncrona
 export const getRestaurants = () => async (dispatch) => {
+
     try {
         const response = await axios.get(
             `${baseUrl}/restaurants`, {
                 headers: {
-                    auth: token,
+                    auth: getToken(),
                 }
             });
         dispatch(setRestaurants(response.data.restaurants))
@@ -40,7 +41,7 @@ export const getRestaurantDetail = () => async (dispatch) => {
         const response = await axios.get(
             `${baseUrl}/restaurants/${3}`, {
                 headers: {
-                    auth: token,
+                    auth: getToken(),
                 }
             }
         )
