@@ -52,6 +52,7 @@ export class PageCart extends React.Component {
               }
             }
           });
+
         
         return (
             <CartWrapper>
@@ -65,7 +66,7 @@ export class PageCart extends React.Component {
                 <OrdersList/>
                 
                 <PaymentWrapper
-                orders={orders}
+                orders={orders[0]}
                 >
                     <DeliveryPrice>Frete R$ 00,00</DeliveryPrice>
                     <TotalPrice>
@@ -87,7 +88,7 @@ export class PageCart extends React.Component {
                 name='confirmButton'
                 color="primary" 
                 variant="contained"
-                disabled={ orders ? false : true }
+                disabled={ orders[0] ? false : true }
                 onClick={this.handleOnClick}
                 >Confirmar
                 </ConfirmButton>

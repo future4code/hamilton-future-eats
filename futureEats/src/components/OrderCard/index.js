@@ -14,12 +14,12 @@ export default class OrderCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
+            addItem: true,
             order:{
-                open: false,
-                addItem: true,
-                quantity: 0,
+                quantity: 100,
                 id: '',
-                img: '',
+                photoUrl: '',
                 name: '',
                 description: '',
                 price: 0,
@@ -29,7 +29,7 @@ export default class OrderCard extends React.Component {
 
     handleAddItem = (event) => {
         event.preventDefault();
-        this.setState({ order:{ open: true, addItem: false, quantity: 0 } })
+        this.setState({ open: true, addItem: false })
     }
 
     handleRemoveItem = (event) => {
@@ -38,28 +38,29 @@ export default class OrderCard extends React.Component {
     }
 
     handleClose = () => {
-        this.setState({ order:{ open: false, addItem: true} })
+        this.setState({  open: false, addItem: true })
       };
 
     handleAddToCart = (quantity) => {
+        const newOrder = {
+            quantity: quantity,
+            addItem: false,
+            id: this.props.id,
+            photoUrl: this.props.photoUrl,
+            name: this.props.name,
+            description: this.props.description,
+            price: this.props.price,
+        } 
         this.setState({
-            order:{
-                quantity: quantity,
-                open: false,
-                addItem: false,
-                id: this.props.id,
-                img: this.props.photoUrl,
-                name: this.props.name,
-                description: this.props.description,
-                price: this.props.price,
-            } 
+            open: false,
+            order: newOrder
         })
-        console.log(quantity)
-        this.props.addToCart(() => (this.state.order))
+        this.props.addToCart(newOrder)
+        console.log(this.props.orders)
     }
 
     render() {
-        const { addItem, quantity, open } = this.state.order
+        const { addItem, quantity, open } = this.state
         const { price, photoUrl, name, description } = this.props
         console.log(this.state.order)
 

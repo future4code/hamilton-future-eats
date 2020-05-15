@@ -34,7 +34,6 @@ export class PageRestaurant extends React.Component {
     }
 
     handleAddToCart = ( newOrder ) => {
-        console.log(newOrder)
         this.props.setOrder( newOrder )
     }
 
@@ -66,6 +65,8 @@ export class PageRestaurant extends React.Component {
                     .toLowerCase() === 'bebida')
             })
         }
+
+        console.log(this.props.orders)
 
         return (
             <RestaurantPageWrapper>
@@ -152,6 +153,7 @@ export class PageRestaurant extends React.Component {
 const mapStateToProps = (state) => ({
     restaurant: state.restaurants.restaurantDetail,
     quantity: state.orders.quantity,
+    orders: state.orders.orders
 })
 
 const mapDispatchToProps = dispatch => {
