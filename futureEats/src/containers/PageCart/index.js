@@ -45,7 +45,6 @@ export class PageCart extends React.Component {
         })
         subtotal = subtotal+this.props.orders.shipping
         this.setState({ subTotalPrice: subtotal })
-
     }
 
     render() {
@@ -82,16 +81,15 @@ export class PageCart extends React.Component {
                 </PaymentWrapper>
 
                 <ConfirmButton
-                name='confirmButton'
-                color="primary" 
-                variant="contained"
-                disabled={ orders[0] ? false : true }
-                onClick={this.handleOnClick}
-                >Confirmar
+                    name='confirmButton'
+                    color="primary" 
+                    variant="contained"
+                    disabled={ orders[0] ? false : true }
+                    onClick={this.handleOnClick}
+                    >Confirmar
                 </ConfirmButton>
                 <Footer/>
             </CartWrapper>
-        
         )
     }
 }
