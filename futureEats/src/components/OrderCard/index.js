@@ -38,7 +38,7 @@ export default class OrderCard extends React.Component {
     }
 
     handleClose = () => {
-        this.setState({ order: { open: true, addItem: false } })
+        this.setState({ order: { open: false, addItem: true } })
       };
 
     handleAddToCart = (quantity) => {
