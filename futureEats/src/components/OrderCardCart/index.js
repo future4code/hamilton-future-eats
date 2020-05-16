@@ -60,34 +60,21 @@ export default class OrderCard extends React.Component {
     }
 
     render() {
-        const { addItem, quantity, open } = this.state.order
-        const { price, photoUrl, name, description } = this.props
+        const { price, photoUrl, name, description, quantity } = this.props
 
         return (
             <OrderCardWrapper>
                 <QuantityBox
-                open = {open}
-                close = {this.handleClose}
-                toCart = {this.handleAddToCart}
                 />
                 <OrderImg src={photoUrl}/>
                 <OrderName >{name}</OrderName>
                 <OrderNumber><span>{quantity}</span></OrderNumber>
                 <OrderDescription>{description}</OrderDescription>
                 <OrderPrice>R${price}</OrderPrice>
-                {addItem ? 
                 <OrderButton 
-                status={addItem}
-                onClick={this.handleAddItem}
-                ><span>Adicionar</span>
-                </OrderButton>
-                :
-                <OrderButton 
-                status={addItem}
                 onClick={this.handleRemoveItem}
                 ><span>Remover</span>
                 </OrderButton>
-                }
             </OrderCardWrapper>
         )
     }

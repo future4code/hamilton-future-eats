@@ -18,9 +18,8 @@ import { CartWrapper,
     ConfirmButton } from './style';
 import OrdersList from '../OrdersList';
 import Footer from '../Footer'
-import {setCurrentPage} from "../../actions/page"
-
-
+import { setCurrentPage } from "../../actions/page"
+import { getFullAddress } from "../../actions/user"
 
 export class PageCart extends React.Component {
     constructor(props) {
@@ -30,7 +29,12 @@ export class PageCart extends React.Component {
         }
     }
     componentDidMount() {
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
         this.props.setCurrentPage(2);
+        this.props.getFullAddress()
         this.subtotalSum()
     }
 
@@ -40,17 +44,20 @@ export class PageCart extends React.Component {
 
     subtotalSum = () => {
         let subtotal = 0
+        if(this.props.orders[0]){
         this.props.orders.forEach( product => {
-            subtotal = (product.price * product.quantity) + subtotal
+            subtotal = subtotal + (product.price * product.quantity)
         })
-        subtotal = subtotal+this.props.orders.shipping
+        subtotal = subtotal + this.props.restaurantDetail.shipping
         this.setState({ subTotalPrice: subtotal })
+        } else this.setState({subTotalPrice: 0})
     }
 
     render() {
-        const { orders, restaurantDetail } = this.props
+        const { orders, restaurantDetail, userAddress } = this.props
         const { subTotalPrice } = this.state
 
+            console.log(userAddress)
 
         return (
             <CartWrapper>
@@ -58,7 +65,13 @@ export class PageCart extends React.Component {
 
                 <DeliveryAddressWrapper>
                     <AddressTitle>Endereço de Entrega</AddressTitle>
-                    <Address>PEGAR DO REDUCER</Address>
+                    <Address>
+                        {userAddress ? (
+                        <span>{userAddress.neighbourhood}, {userAddress.number }, {userAddress.street } </span>
+                        ) : ( 
+                        <span>Carregando...</span> 
+                        )}
+                    </Address>
                 </DeliveryAddressWrapper>
 
                 <OrdersList/>
@@ -96,11 +109,13 @@ export class PageCart extends React.Component {
 
 const mapStateToProps = (state) => ({
     orders: state.orders.orders,
-    restaurantDetail: state.restaurants.restaurantDetail
+    restaurantDetail: state.restaurants.restaurantDetail,
+    userAddress: state.user.fullAddress
 })
 
 const mapDispatchToProps = dispatch => {
     return {
+        getFullAddress: () => dispatch(getFullAddress()),
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
     }
 }

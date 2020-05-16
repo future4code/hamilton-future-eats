@@ -29,21 +29,21 @@ export class PageRestaurant extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.getActiveOrder();
-       // this.props.getRestaurantDetail()
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
+        this.props.setCurrentPage(1);
     }
 
     handleAddToCart = ( newOrder ) => {
         this.props.setOrder( newOrder )
     }
 
-
-    render() {
-        const { restaurant, quantity, addItem } = this.props
+    filteredMainMenu = () => {
+        const { restaurant } = this.props
 
         let mainProducts=[];
-        let sideDish=[];
-        let beverage=[];
 
         if(restaurant.products){
             mainProducts = restaurant.products.filter(
@@ -52,12 +52,33 @@ export class PageRestaurant extends React.Component {
                     product.category
                     .toLowerCase() !== 'bebida' && product.category !== 'acompanhamento')
             })
+        }
+        return mainProducts
+    }
+
+    filteredSideDish = () => {
+        const { restaurant } = this.props
+
+        let sideDish=[];
+
+        if(restaurant.products){
+        
             sideDish = restaurant.products.filter(
                 product => {
                 return (
                     product.category
                     .toLowerCase() === 'acompanhamento')
             })
+        }
+        return sideDish
+    }
+
+    filteredBeverage = () => {
+        const { restaurant } = this.props
+
+        let beverage=[];
+
+        if(restaurant.products){
             beverage = restaurant.products.filter(
                 product => {
                 return (
@@ -65,13 +86,70 @@ export class PageRestaurant extends React.Component {
                     .toLowerCase() === 'bebida')
             })
         }
+        return beverage
+    }
 
-        console.log(this.props.orders)
+    renderMainMenu = () => {
+        return (
+            this.filteredMainMenu()
+            .map( product => (
+                <OrderCard
+                key={product.id}
+                photoUrl={product.photoUrl}
+                name={product.name}
+                // quantity={quantity}
+                description={product.description}
+                price={product.price}
+                id={product.id}
+                // addItem={addItem}
+                addToCart={this.handleAddToCart}
+                />
+            ))
+        )
+    }
+
+    renderSideDish = () => {
+        return (
+            this.filteredSideDish()
+            .map( product => (
+                <OrderCard
+                key={product.id}
+                photoUrl={product.photoUrl}
+                name={product.name}
+                // quantity={quantity}
+                description={product.description}
+                price={product.price}
+                // addItem={addItem}
+                addToCart={this.handleAddToCart}
+                />
+            ))
+        )
+    }
+
+    renderBeverage = () => {
+        return (
+            this.filteredBeverage()
+            .map( product => (
+                <OrderCard
+                key={product.id}
+                photoUrl={product.photoUrl}
+                name={product.name}
+                // quantity={quantity}
+                description={product.description}
+                price={product.price}
+                // addItem={addItem}
+                addToCart={this.handleAddToCart}
+                />
+            ))
+        )
+    }
+
+    render() {
+        const { restaurant } = this.props
 
         return (
             <RestaurantPageWrapper>
                 <Title>Restaurante</Title>
-
                 <RestaurantInformation>
                     <RestaurantImg
                     src={restaurant.logoUrl}
@@ -83,60 +161,28 @@ export class PageRestaurant extends React.Component {
                     </Details>
                     <Details>{restaurant.address}</Details>
                 </RestaurantInformation>
-
                 <MenuWrapper>
                     <MenuTitle>Principais</MenuTitle>
                     <MainMenu>
                         {restaurant.products ? (
-                            mainProducts.map( product => (
-                                <OrderCard
-                                key={product.id}
-                                photoUrl={product.photoUrl}
-                                name={product.name}
-                                quantity={quantity}
-                                description={product.description}
-                                price={product.price}
-                                id={product.id}
-                                addItem={addItem}
-                                addToCart={this.handleAddToCart}
-                                />
-                            ))) : (
+                                this.renderMainMenu()
+                            ) : (
                                 <span> Carregando... </span>
                             )}
                     </MainMenu>
                     <MenuTitle>Acompanhamentos</MenuTitle>
                     <SideDish>
                         {restaurant.products ? (
-                            sideDish.map( product => (
-                                <OrderCard
-                                key={product.id}
-                                photoUrl={product.photoUrl}
-                                name={product.name}
-                                quantity={quantity}
-                                description={product.description}
-                                price={product.price}
-                                addItem={addItem}
-                                addToCart={this.handleAddToCart}
-                                />
-                            ))) : (
+                                this.renderSideDish()
+                           ) : (
                                 <span> Carregando... </span>
                             )}
                     </SideDish>
                     <MenuTitle>Bebidas</MenuTitle>
                     <Beverage>
                         {restaurant.products ? (
-                            beverage.map( product => (
-                                <OrderCard
-                                key={product.id}
-                                photoUrl={product.photoUrl}
-                                name={product.name}
-                                quantity={quantity}
-                                description={product.description}
-                                price={product.price}
-                                addItem={addItem}
-                                addToCart={this.handleAddToCart}
-                                />
-                            ))) : (
+                                this.renderBeverage()
+                            ) : (
                                 <span> Carregando... </span>
                             )}
                     </Beverage>
@@ -145,7 +191,6 @@ export class PageRestaurant extends React.Component {
                 <Footer/>
 
             </RestaurantPageWrapper>
-        
         )
     }
 }
