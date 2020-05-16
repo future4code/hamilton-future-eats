@@ -19,7 +19,7 @@ export class OrdersList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            quantity: 2,
+            quantity: 0,
         }
     }
 

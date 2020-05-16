@@ -14,10 +14,10 @@ export default class OrderCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
-            addItem: true,
             order:{
-                quantity: 100,
+                open: false,
+                addItem: true,
+                quantity: 0,
                 id: '',
                 photoUrl: '',
                 name: '',
@@ -29,7 +29,7 @@ export default class OrderCard extends React.Component {
 
     handleAddItem = (event) => {
         event.preventDefault();
-        this.setState({ open: true, addItem: false })
+        this.setState({ order: { open: true, addItem: false } })
     }
 
     handleRemoveItem = (event) => {
@@ -38,7 +38,7 @@ export default class OrderCard extends React.Component {
     }
 
     handleClose = () => {
-        this.setState({  open: false, addItem: true })
+        this.setState({ order: { open: true, addItem: false } })
       };
 
     handleAddToCart = (quantity) => {
@@ -60,9 +60,8 @@ export default class OrderCard extends React.Component {
     }
 
     render() {
-        const { addItem, quantity, open } = this.state
+        const { addItem, quantity, open } = this.state.order
         const { price, photoUrl, name, description } = this.props
-        console.log(this.state.order)
 
         return (
             <OrderCardWrapper>

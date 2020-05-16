@@ -18,7 +18,8 @@ import { CartWrapper,
     ConfirmButton } from './style';
 import OrdersList from '../OrdersList';
 import Footer from '../Footer'
-import {setCurrentPage} from "../../actions/page"
+import { setCurrentPage } from "../../actions/page"
+import { getFullAddress } from "../../actions/user"
 
 
 
@@ -31,7 +32,8 @@ export class PageCart extends React.Component {
     }
     componentDidMount() {
         this.props.setCurrentPage(2);
-        this.subtotalSum()
+        // this.subtotalSum()
+        this.props.getFullAddress()
     }
 
     hendleOnClick = (event) => {
@@ -48,9 +50,10 @@ export class PageCart extends React.Component {
     }
 
     render() {
-        const { orders, restaurantDetail } = this.props
+        const { orders, restaurantDetail, userAddress } = this.props
         const { subTotalPrice } = this.state
 
+            console.log(userAddress)
 
         return (
             <CartWrapper>
@@ -58,7 +61,13 @@ export class PageCart extends React.Component {
 
                 <DeliveryAddressWrapper>
                     <AddressTitle>Endereço de Entrega</AddressTitle>
-                    <Address>PEGAR DO REDUCER</Address>
+                    <Address>
+                        {userAddress ? (
+                        <span>{userAddress.neighbourhood}, {userAddress.number }, {userAddress.street } </span>
+                        ) : ( 
+                        <span>Carregando...</span> 
+                        )}
+                    </Address>
                 </DeliveryAddressWrapper>
 
                 <OrdersList/>
@@ -96,11 +105,13 @@ export class PageCart extends React.Component {
 
 const mapStateToProps = (state) => ({
     orders: state.orders.orders,
-    restaurantDetail: state.restaurants.restaurantDetail
+    restaurantDetail: state.restaurants.restaurantDetail,
+    userAddress: state.user.fullAddress
 })
 
 const mapDispatchToProps = dispatch => {
     return {
+        getFullAddress: () => dispatch(getFullAddress()),
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
     }
 }
