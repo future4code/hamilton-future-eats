@@ -21,8 +21,6 @@ import Footer from '../Footer'
 import { setCurrentPage } from "../../actions/page"
 import { getFullAddress } from "../../actions/user"
 
-
-
 export class PageCart extends React.Component {
     constructor(props) {
         super(props)
@@ -31,9 +29,13 @@ export class PageCart extends React.Component {
         }
     }
     componentDidMount() {
+        const token = localStorage.getItem("token")
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
         this.props.setCurrentPage(2);
-        // this.subtotalSum()
         this.props.getFullAddress()
+        this.subtotalSum()
     }
 
     hendleOnClick = (event) => {
@@ -42,11 +44,13 @@ export class PageCart extends React.Component {
 
     subtotalSum = () => {
         let subtotal = 0
+        if(this.props.orders[0]){
         this.props.orders.forEach( product => {
-            subtotal = (product.price * product.quantity) + subtotal
+            subtotal = subtotal + (product.price * product.quantity)
         })
-        subtotal = subtotal+this.props.orders.shipping
+        subtotal = subtotal + this.props.restaurantDetail.shipping
         this.setState({ subTotalPrice: subtotal })
+        } else this.setState({subTotalPrice: 0})
     }
 
     render() {

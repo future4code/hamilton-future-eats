@@ -11,7 +11,7 @@ import {
     } from './style';
 import {getActiveOrder, placeOrder} from '../../actions/orders'
 import { getRestaurantDetail } from '../../actions/restaurants'
-import OrderCard from '../../components/OrderCard'
+import OrderCardCart from '../../components/OrderCardCart'
 
 
 
@@ -24,8 +24,30 @@ export class OrdersList extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.getActiveOrder();
+        const token = localStorage.getItem("token")
+        // const ordersOnHold = localStorage.getItem('orders')
+        if (token === null) {
+            this.props.goToLoginScreen()
+        }
+        // if(ordersOnHold){
+        //     localStorage.getItem('ordersId')
+        // }
         this.props.getRestaurantDetail()
+    }
+
+    renderOrdersCard = () => {
+        return(
+        this.props.orders.map( product => {
+            return (
+            <OrderCardCart
+            key={product.id}
+            photoUrl={product.photoUrl}
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            quantity={product.quantity}
+            />
+            )}))
     }
 
     render() {
@@ -39,19 +61,7 @@ export class OrdersList extends React.Component {
                                 <RestaurantAddress>{restaurant.address}</RestaurantAddress>
                                 <ExpectedTime>{restaurant.deliveryTime}</ExpectedTime>
                             </RestaurantInfo>
-                        {orders.map( product => (
-                            <OrderCard
-                            key={product.id}
-                            photoUrl={product.photoUrl}
-                            name={product.name}
-                            quantity={quantity}
-                            description={product.description}
-                            price={product.price}
-                            addItem={addItem}
-                            quantity={product.quantity}
-                            />
-                        ))
-                        }
+                            {this.renderOrdersCard()}
                         </OrderWrapper>
 
                     ) : (
@@ -65,7 +75,6 @@ export class OrdersList extends React.Component {
 const mapStateToProps = (state) => ({
     orders: state.orders.orders,
     restaurant: state.restaurants.restaurantDetail,
-    addItem: state.orders.addItem
 })
 
 const mapDispatchToProps = dispatch => ({
