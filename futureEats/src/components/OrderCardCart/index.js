@@ -56,8 +56,8 @@ export default class OrderCard extends React.Component {
             order: newOrder
         })
         this.props.addToCart(newOrder)
-        console.log(this.props.orders)
     }
+
 
     render() {
         const { price, photoUrl, name, description, quantity } = this.props
@@ -72,7 +72,7 @@ export default class OrderCard extends React.Component {
                 <OrderDescription>{description}</OrderDescription>
                 <OrderPrice>R${price}</OrderPrice>
                 <OrderButton 
-                onClick={this.handleRemoveItem}
+                // onClick={() => this.handleRemoveItem(idOrderItem)}
                 ><span>Remover</span>
                 </OrderButton>
             </OrderCardWrapper>
