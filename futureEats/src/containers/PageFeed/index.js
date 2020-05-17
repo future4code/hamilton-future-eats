@@ -91,7 +91,9 @@ class PageFeed extends React.Component {
                 return (
                     <OptionText
                         activeOption = {this.state.activeOption}
+
                         onClick={() => this.handleFilter(element.category, indexActiveFilter)}
+
                     >
                         {element.category}
                     </OptionText>

@@ -28,7 +28,7 @@ export const Logo = styled(Typography)`
 export const BackIcon = styled(FaAngleLeft) `
 `
 export const ResultsWrapper = styled.div `
-    height: 100%;
+    height: 99%;
     width: 100%;
     overflow-y: scroll;
     display: flex;

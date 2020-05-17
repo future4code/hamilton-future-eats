@@ -49,6 +49,7 @@ export const placeOrder = (ordersToPlace, restaurantId) => async (dispatch) => {
         )
         dispatch(setActiveOrder(ordersToPlace))
         dispatch(push(routes.feed))
+      
     } catch (error) {
         console.error(error)
     }

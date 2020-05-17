@@ -132,7 +132,7 @@ export const updateProfile = (body) => async (dispatch) => {
   const token = localStorage.getItem("token");
 
   try{
-    const response = await axios.put('https://us-central1-missao-newton.cloudfunctions.net/futureEats/profile', body, {
+    await axios.put('https://us-central1-missao-newton.cloudfunctions.net/futureEats/profile', body, {
       headers: {
         auth: token,
       }

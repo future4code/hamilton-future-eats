@@ -11,7 +11,7 @@ import { ReactComponent as AvatarIcon } from "../../icons/avatar.svg"
 class Footer extends React.Component {
 
     handleOnClick = (page) => {
-        const { goToFeedPage, goToCartPage, goToProfilePage, setCurrentPage } = this.props
+        const { goToFeedPage, goToCartPage, goToProfilePage } = this.props
 
         switch (page) {
             case "home": {
