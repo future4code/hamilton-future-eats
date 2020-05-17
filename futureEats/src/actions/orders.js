@@ -37,13 +37,13 @@ export function setOrdersHistory(ordersHistory){
 
 //Assíncrona
 export const placeOrder = (ordersToPlace, restaurantId) => async (dispatch) => {
-    const token = localStorage.getItem("token");
+
     try {
         await axios.post(
             `${baseUrl}/restaurants/${restaurantId}/order`, 
             ordersToPlace, {
                 headers: {
-                    auth: token,
+                    auth: getToken(),
                 }
             }
         )
@@ -60,7 +60,7 @@ export const getActiveOrder = () => async (dispatch) => {
         const response = await axios.get(
             `${baseUrl}/active-order`, {
                 headers: {
-                auth: getToken,
+                auth: getToken(),
                 }
             }
         )
@@ -75,7 +75,7 @@ export const getOrdersHistory = () => async (dispatch) => {
         const response = await axios.get(
             `${baseUrl}/orders/history`, {
                 headers: {
-                    auth: getToken,
+                    auth: getToken(),
                 }
             }
         )
