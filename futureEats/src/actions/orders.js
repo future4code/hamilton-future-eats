@@ -1,14 +1,12 @@
 import axios from 'axios'
+import { routes } from "../containers/Router"
+import { push } from "connected-react-router"
+
+
 const getToken = () => localStorage.getItem("token");
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //Síncrona
-// export function addToCart(orderSelected){
-//     return{
-//         type: 'ADD_TO_CART',
-//         payload: orderSelected,
-//     }
-// }
 
 export function setOrder(newOrder){
     return {
@@ -19,11 +17,12 @@ export function setOrder(newOrder){
     }
 }
 
-export function setActiveOrder(activeOrderAPI){
+export function setActiveOrder(activeOrderAPI, restaurantId){
     return {
         type: 'SET_ACTIVE_ORDER',
         payload: {
-            activeOrders: activeOrderAPI
+            activeOrder: activeOrderAPI,
+            restaurantId: restaurantId
         }
     }
 }
@@ -38,18 +37,21 @@ export function setOrdersHistory(ordersHistory){
 }
 
 //Assíncrona
-export const placeOrder = (body, restaurantId) => async (dispatch) => {
+export const placeOrder = (ordersToPlace, restaurantId) => async (dispatch) => {
+    
     try {
-        const response = await axios.post(
-            `${baseUrl}/restaurants/${restaurantId}/order`, body, {
-            headers: {
-                auth: getToken,
+        await axios.post(
+            `${baseUrl}/restaurants/${restaurantId}/order`, ordersToPlace, {
+                headers: {
+                    auth: getToken,
+                }
             }
-        }
         )
-        dispatch(getActiveOrder())
+        dispatch(setActiveOrder(ordersToPlace))
+        dispatch(push(routes.feed))
     } catch (error) {
         console.error(error)
+        console.log(ordersToPlace)
     }
 }
 
@@ -57,10 +59,10 @@ export const getActiveOrder = () => async (dispatch) => {
     try {
         const response = await axios.get(
             `${baseUrl}/active-order`, {
-            headers: {
+                headers: {
                 auth: getToken,
+                }
             }
-        }
         )
         // dispatch(setActiveOrder(response.data.order))
     } catch (error) {

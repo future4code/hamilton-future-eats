@@ -1,7 +1,8 @@
 const initialState = {
     orders: [],
     ordersHistory: [],
-    activeOrder: []
+    activeOrder: [
+    ]
 }
 
 const orders = (state = initialState, action) => {
@@ -11,7 +12,7 @@ const orders = (state = initialState, action) => {
             return { ...state, orders: [...state.orders, action.payload.orders]}
         }
         case ('SET_ACTIVE_ORDER'): {
-            return { ...state, activeOrder: action.payload.activeOrder}
+            return { ...state, activeOrder: action.payload.activeOrder,}
         }
         case ('SET_ORDERS_HISTORY'): {
             return { ...state, ordersHistory: action.payload.ordersHistory}
