@@ -65,7 +65,7 @@ class PageFeed extends React.Component {
 
     renderOptions = () => {
         const { restaurants } = this.props
-        let valueActiveOption = 0
+        let valueActiveOption = 0;
 
         return (
             restaurants.map(element => {
