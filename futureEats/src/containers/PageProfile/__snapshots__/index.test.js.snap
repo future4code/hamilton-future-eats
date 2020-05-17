@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing profile page Testando styled do EditIcon 1`] = `
+<div
+  className="sc-EHOje gOzjmu"
+/>
+`;
+
+exports[`Testing profile page Testando styled do HistPedidosCard 1`] = `
+<div
+  className="sc-dnqmqq dEAirA"
+/>
+`;
+
+exports[`Testing profile page Testando styled do HistPedidosWrapper 1`] = `
+<div
+  className="sc-VigVT fbfmFh"
+/>
+`;
+
+exports[`Testing profile page Testando styled do PedidoDateText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-gZMcBi lnGOOI"
+/>
+`;
+
+exports[`Testing profile page Testando styled do PedidoPlaceText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-iwsKbI jzPEsZ"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileAdressInfo 1`] = `
+<div
+  className="sc-htoDjs dTnJEb"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileAdressInfoWrapper 1`] = `
+<div
+  className="sc-gzVnrw hZVEKp"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileHeader 1`] = `
+<div
+  className="sc-bwzfXH dhKYig"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileInfos 1`] = `
+<div
+  className="sc-ifAKCX elEHDe"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileInfosWrapper 1`] = `
+<div
+  className="sc-bZQynM iavprM"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-htpNat ipdBQQ"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileTextSecond 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bxivhb kYexLI"
+/>
+`;
+
+exports[`Testing profile page Testando styled do ProfileWrapper 1`] = `
+<div
+  className="sc-bdVaJa jdLWYi"
+/>
+`;
+
+exports[`Testing profile page Testando styled do SubtotalText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-gqjmRU dCPwNO"
+/>
+`;

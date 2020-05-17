@@ -144,6 +144,8 @@ export class PageRestaurant extends React.Component {
         )
     }
 
+
+
     render() {
         const { restaurant } = this.props
 

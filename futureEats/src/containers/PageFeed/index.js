@@ -9,6 +9,12 @@ import SearchBar from "../SearchBar"
 import { replace } from 'connected-react-router';
 import { routes } from "../Router"
 import { getRestaurantDetail } from '../../actions/restaurants'
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
+
+function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
+  }
 
 class PageFeed extends React.Component {
     constructor(props) {
@@ -16,7 +22,9 @@ class PageFeed extends React.Component {
         this.state = {
             search: "",
             currentFilter: false,
-            activeOption: 2
+            activeOption: 2,
+            open: false,
+            Transition: null,
         }
     }
 
@@ -27,8 +35,19 @@ class PageFeed extends React.Component {
         }
         this.props.getRestaurants();
         this.props.setCurrentPage(1);
-       
+
+        if(this.props.activeOrder[0]){
+        this.showSnackBar(TransitionUp)
+        }
     }
+
+    showSnackBar = Transition => () => {
+        this.setState({ open: true, Transition });
+      };
+    
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
     handleInputChange = (event) => {
         const { name, value } = event.target
@@ -65,16 +84,16 @@ class PageFeed extends React.Component {
 
     renderOptions = () => {
         const { restaurants } = this.props
-        let valueActiveOption = 0
 
         return (
-            restaurants.map(element => {
-                valueActiveOption += 1
-
+            restaurants.map( (element, index) => {
+                const indexActiveFilter = index + 2
                 return (
                     <OptionText
                         activeOption = {this.state.activeOption}
-                        onClick={() => this.handleFilter(element.category, `${valueActiveOption}` )}
+
+                        onClick={() => this.handleFilter(element.category, indexActiveFilter)}
+
                     >
                         {element.category}
                     </OptionText>
@@ -107,6 +126,8 @@ class PageFeed extends React.Component {
                 <ContentWrapper>
                     {(this.props.restaurants) && this.renderRestaurants()}
                 </ContentWrapper>
+                <Snackbar
+                />
                 <Footer />
             </FeedWrapper>
         )
@@ -114,7 +135,8 @@ class PageFeed extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    restaurants: state.restaurants.restaurants
+    restaurants: state.restaurants.restaurants,
+    activeOrder: state.orders.activeOrder
 
 })
 

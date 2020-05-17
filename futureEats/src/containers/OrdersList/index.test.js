@@ -1,33 +1,35 @@
 import React from 'react'
-import {shallow} from 'enzyme'
-import { 
+import { shallow } from 'enzyme'
+import {
     OrdersListWrapper,
     OrderWrapper,
-    IfEmpty, 
+    IfEmpty,
     RestaurantInfo,
-    RestaurantName, 
+    RestaurantName,
     RestaurantAddress,
     ExpectedTime,
-    } from './style';
-import {OrdersList} from './index'
+} from './style';
+import { OrdersList } from './index'
+import renderer from 'react-test-renderer'
 
 
 
-describe ("Testing OrdersList", () => {
+
+describe("Testing OrdersList", () => {
     test("Finding subComponents of cart with items", () => {
         //preparação
         const mockFunction = jest.fn()
         const mockOrderProps = [
-        {
-            category: 'Refeição',
-            description: 'A tradição italiana na sua casa',
-            id: 'FcAp6stw4Essna5JdTKS',
-            name: 'Penne do Campo',
-            photoUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/1b7b1a90-043d-45d6-9932-2903b304b956/201905291247_x5ae_c.jpg',
-            price: 32,
-        }
-    ]
-        const mockRestaurantProps = 
+            {
+                category: 'Refeição',
+                description: 'A tradição italiana na sua casa',
+                id: 'FcAp6stw4Essna5JdTKS',
+                name: 'Penne do Campo',
+                photoUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/1b7b1a90-043d-45d6-9932-2903b304b956/201905291247_x5ae_c.jpg',
+                price: 32,
+            }
+        ]
+        const mockRestaurantProps =
         {
             id: "1",
             name: "Habibs",
@@ -39,11 +41,11 @@ describe ("Testing OrdersList", () => {
             address: "Rua das Margaridas, 110 - Jardim das Flores"
         }
 
-        const renderedComponent = shallow(<OrdersList 
+        const renderedComponent = shallow(<OrdersList
             getRestaurantDetail={mockFunction}
-            orders = {mockOrderProps}
-            restaurant = {mockRestaurantProps}
-            />)
+            orders={mockOrderProps}
+            restaurant={mockRestaurantProps}
+        />)
 
 
         const findOrdersListWrapper = renderedComponent.find(OrdersListWrapper)
@@ -61,16 +63,40 @@ describe ("Testing OrdersList", () => {
         expect(findRestaurantAddress).toHaveLength(1);
         expect(findExpectedTime).toHaveLength(1);
     })
-    // test("Finding subComponents of empty cart", () => {
-    //     //preparação
-    //     const mockFunction = jest.fn()
+    test("Testando styled do OrdersListWrapper", () => {
+        const newSnapShot = renderer.create(<OrdersListWrapper />).toJSON()
 
-    //     const renderedComponent = shallow(<OrdersList getRestaurantDetail={mockFunction}/>)
-    //     renderedComponent.setState({orders: false})
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do IfEmpty", () => {
+        const newSnapShot = renderer.create(<IfEmpty />).toJSON();
 
-    //     const findIfEmpty = renderedComponent.find(IfEmpty) 
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do OrderWrapper", () => {
+        const newSnapShot = renderer.create(<OrderWrapper />).toJSON();
 
-    //     //verificação
-    //     expect(findIfEmpty).toHaveLength(1);
-    // })
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do RestaurantInfo", () => {
+        const newSnapShot = renderer.create(<RestaurantInfo />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do RestaurantName", () => {
+        const newSnapShot = renderer.create(<RestaurantName />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do RestaurantAddress", () => {
+        const newSnapShot = renderer.create(<RestaurantAddress />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do ExpectedTime", () => {
+        const newSnapShot = renderer.create(<ExpectedTime />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+
 })

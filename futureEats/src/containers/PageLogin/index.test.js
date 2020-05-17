@@ -1,7 +1,8 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import { LoginWrapper, Logo, Entrar, Inputs, EntrarButton, Cadastrar } from './style';
+import { LoginWrapper, Logo, Entrar, Inputs, EntrarButton, Cadastrar, Form, Span } from './style';
 import {PageLogin} from './index'
+import renderer from 'react-test-renderer'
 
 
 
@@ -48,5 +49,40 @@ describe ("Testing login page", () => {
         //verificação
         expect(renderedComponent.state().email).toEqual("test")
         expect(renderedComponent.state().password).toEqual("test2")
+    })
+    test("Testando styled do LoginWrapper", () => {
+        const newSnapShot = renderer.create(<LoginWrapper />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Logo", () => {
+        const newSnapShot = renderer.create(<Logo />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Entrar", () => {
+        const newSnapShot = renderer.create(<Entrar />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Inputs", () => {
+        const newSnapShot = renderer.create(<Inputs />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do EntrarButton", () => {
+        const newSnapShot = renderer.create(<EntrarButton />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Form", () => {
+        const newSnapShot = renderer.create(<Form />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Span", () => {
+        const newSnapShot = renderer.create(<Span />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
     })
 })

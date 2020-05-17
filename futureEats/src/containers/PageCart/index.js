@@ -20,12 +20,14 @@ import OrdersList from '../OrdersList';
 import Footer from '../Footer'
 import { setCurrentPage } from "../../actions/page"
 import { getFullAddress } from "../../actions/user"
+import { placeOrder } from "../../actions/orders"
 
 export class PageCart extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             subTotalPrice: 0,
+            paymentMethod: "",
         }
     }
     componentDidMount() {
@@ -36,10 +38,6 @@ export class PageCart extends React.Component {
         this.props.setCurrentPage(2);
         this.props.getFullAddress()
         this.subtotalSum()
-    }
-
-    hendleOnClick = (event) => {
-        event.preventDefault()
     }
 
     subtotalSum = () => {
@@ -53,11 +51,29 @@ export class PageCart extends React.Component {
         } else this.setState({subTotalPrice: 0})
     }
 
+    handlePaymentMethod = (event) => {
+        this.setState({ paymentMethod: event.target.value })
+    }
+
+    handlePlaceOrder = () => {
+        const ordersToPlace = 
+        {
+            products: 
+            this.props.orders.map(order => (
+                    {
+                    "id": order.id,
+                    "quantity": order.quantity
+                }
+                )),
+            "paymentMethod": this.state.paymentMethod
+        }  
+        this.props.placeOrder(ordersToPlace, this.props.restaurantDetail.id)
+    }
+
+
     render() {
         const { orders, restaurantDetail, userAddress } = this.props
         const { subTotalPrice } = this.state
-
-            console.log(userAddress)
 
         return (
             <CartWrapper>
@@ -86,19 +102,23 @@ export class PageCart extends React.Component {
                     </TotalPrice>
                     <PaymentMethod>
                         <PaymentTitle>Forma de Pagamento</PaymentTitle>
-                            <PaymentRadioGroup>
-                                <RadioPayment  control={<RadioCustom color='secondary'/>} value="dinheiro" label='Dinheiro'/>
-                                <RadioPayment control={<RadioCustom color='secondary'/>} value="credito" label='Cartão de Crédito'/>
+                            <PaymentRadioGroup
+                            onChange = {this.handlePaymentMethod}
+                            required
+                            defaultValue={"money"}
+                            >
+                                <RadioPayment  control={<RadioCustom color='secondary'/>} value="money" label='Dinheiro'/>
+                                <RadioPayment control={<RadioCustom color='secondary'/>} value="creditcard" label='Cartão de Crédito'/>
                             </PaymentRadioGroup>
                     </PaymentMethod>
                 </PaymentWrapper>
 
                 <ConfirmButton
-                    name='confirmButton'
+                    // name='confirmButton'
                     color="primary" 
                     variant="contained"
                     disabled={ orders[0] ? false : true }
-                    onClick={this.handleOnClick}
+                    onClick={this.handlePlaceOrder}
                     >Confirmar
                 </ConfirmButton>
                 <Footer/>
@@ -117,6 +137,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getFullAddress: () => dispatch(getFullAddress()),
         setCurrentPage: (currentPage) => dispatch(setCurrentPage(currentPage)),
+        placeOrder: (ordersToPlace, restaurantId) => dispatch(placeOrder(ordersToPlace, restaurantId))
     }
 }
 
