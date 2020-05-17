@@ -14,8 +14,11 @@ import {
     PaymentTitle,
     PaymentRadioGroup,
     RadioPayment,
-    ConfirmButton } from './style';
-import {PageCart} from './index'
+    ConfirmButton,
+    Address,
+    RadioCustom } from './style';
+import {PageCart} from './index';
+import renderer from 'react-test-renderer';
 
 
 
@@ -80,4 +83,68 @@ describe ("Testing Cart Page", () => {
         // expect(event.preventDefault).toBeCalled();
         // expect(mockOnClick.mock.calls.length).toEqual(1);  
       })
+      test("Testando styled do CartWrapper", () => {
+        const newSnapShot = renderer.create(<CartWrapper />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    
+    test("Testando styled do Title", () => {
+        const newSnapShot = renderer.create(<Title />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do DeliveryAddressWrapper", () => {
+        const newSnapShot = renderer.create(<DeliveryAddressWrapper />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do AddressTitle", () => {
+        const newSnapShot = renderer.create(<AddressTitle />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Address", () => {
+        const newSnapShot = renderer.create(<Address />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do PaymentWrapper", () => {
+        const newSnapShot = renderer.create(<PaymentWrapper />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do DeliveryPrice", () => {
+        const newSnapShot = renderer.create(<DeliveryPrice />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do TotalPrice", () => {
+        const newSnapShot = renderer.create(<TotalPrice />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do PaymentMethod", () => {
+        const newSnapShot = renderer.create(<PaymentMethod />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do PaymentTitle", () => {
+        const newSnapShot = renderer.create(<PaymentTitle />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do PaymentRadioGroup", () => {
+        const newSnapShot = renderer.create(<PaymentRadioGroup />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    
+    test("Testando styled do RadioCustom", () => {
+        const newSnapShot = renderer.create(<RadioCustom />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+      
+    
 })

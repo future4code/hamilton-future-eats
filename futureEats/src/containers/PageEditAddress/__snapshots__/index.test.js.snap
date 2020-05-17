@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testando styled do BackIcon 1`] = `
+<svg
+  className="sc-fjdhpX kGFPwa"
+  fill="currentColor"
+  height="1em"
+  stroke="currentColor"
+  strokeWidth="0"
+  style={
+    Object {
+      "color": undefined,
+    }
+  }
+  viewBox="0 0 256 512"
+  width="1em"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
+  />
+</svg>
+`;
+
+exports[`Testando styled do EditIcon 1`] = `
+<div
+  className="sc-EHOje gOzjmu"
+/>
+`;
+
+exports[`Testando styled do EditProfileForm 1`] = `
+<form
+  className="sc-jTzLTM irmnoo"
+/>
+`;
+
+exports[`Testando styled do HistPedidosCard 1`] = `
+<div
+  className="sc-dnqmqq dEAirA"
+/>
+`;
+
+exports[`Testando styled do HistPedidosWrapper 1`] = `
+<div
+  className="sc-VigVT fbfmFh"
+/>
+`;
+
+exports[`Testando styled do PedidoDateText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-gZMcBi lnGOOI"
+/>
+`;
+
+exports[`Testando styled do ProfileAdressInfo 1`] = `
+<div
+  className="sc-htoDjs dTnJEb"
+/>
+`;
+
+exports[`Testando styled do ProfileAdressInfoWrapper 1`] = `
+<div
+  className="sc-gzVnrw hZVEKp"
+/>
+`;
+
+exports[`Testando styled do ProfileHeader 1`] = `
+<div
+  className="sc-bwzfXH dhKYig"
+/>
+`;
+
+exports[`Testando styled do ProfileInfos 1`] = `
+<div
+  className="sc-ifAKCX elEHDe"
+/>
+`;
+
+exports[`Testando styled do ProfileInfosWrapper 1`] = `
+<div
+  className="sc-bZQynM iavprM"
+/>
+`;
+
+exports[`Testando styled do ProfileText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-htpNat ipdBQQ"
+/>
+`;
+
+exports[`Testando styled do ProfileTextSecond 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bxivhb kYexLI"
+/>
+`;
+
+exports[`Testando styled do ProfileWrapper 1`] = `
+<div
+  className="sc-bdVaJa jdLWYi"
+/>
+`;
+
+exports[`Testando styled do SubtotalText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-gqjmRU dCPwNO"
+/>
+`;

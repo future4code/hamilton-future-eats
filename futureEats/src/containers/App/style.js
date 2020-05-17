@@ -15,7 +15,7 @@ export const DisplayWrapper = styled.div`
 export const StatusBar = styled.div`
     height: 20px;
     width: 100%;
-    background-color: black;
+    
 `
 export const PageWrapper = styled.div`
     height: 647px;
