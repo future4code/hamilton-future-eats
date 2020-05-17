@@ -5,7 +5,6 @@ const initialState = {
 }
 
 const orders = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case ('SET_ORDER'): {
             return { ...state, orders: [...state.orders, action.payload.orders]}

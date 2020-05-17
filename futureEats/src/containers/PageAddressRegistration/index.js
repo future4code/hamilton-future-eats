@@ -41,7 +41,7 @@ export class PageAddressRegistration extends React.Component {
     }
 
     handleChangeInputCpf = (event) => {
-        const { name, value } = event.target
+        const { value } = event.target
 
         let newCPF = value
         newCPF = newCPF.replace(/\D/g, ""); 

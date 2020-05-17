@@ -40,13 +40,12 @@ export function setOrdersHistory(ordersHistory){
 //Assíncrona
 export const placeOrder = (body, restaurantId) => async (dispatch) => {
     try {
-        const response = await axios.post(
+        await axios.post(
             `${baseUrl}/restaurants/${restaurantId}/order`, body, {
             headers: {
                 auth: getToken,
             }
-        }
-        )
+        })
         dispatch(getActiveOrder())
     } catch (error) {
         console.error(error)
