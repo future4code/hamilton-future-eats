@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing SignUp page Testando styled do Create 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bxivhb dryvRo"
+/>
+`;
+
+exports[`Testing SignUp page Testando styled do CreateButton 1`] = `
+<button
+  className="MuiButtonBase-root-97 MuiButton-root-71 MuiButton-text-73 MuiButton-flat-76 sc-EHOje gmGnwB"
+  disabled={false}
+  onBlur={[Function]}
+  onContextMenu={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="0"
+  type="button"
+>
+  <span
+    className="MuiButton-label-72"
+  />
+  <span
+    className="MuiTouchRipple-root-100"
+  />
+</button>
+`;
+
+exports[`Testing SignUp page Testando styled do Form 1`] = `
+<form
+  className="sc-bdVaJa jTWtvb"
+/>
+`;
+
+exports[`Testing SignUp page Testando styled do Icon 1`] = `
+<div
+  className="sc-gzVnrw eWazr"
+/>
+`;
+
+exports[`Testing SignUp page Testando styled do Inputs 1`] = `
+<div
+  className="MuiFormControl-root-37 sc-ifAKCX iQrzqM"
+>
+  <div
+    className="MuiInputBase-root-54 MuiInput-root-41 MuiInput-underline-45 MuiInputBase-formControl-55 MuiInput-formControl-42"
+    onClick={[Function]}
+  >
+    <input
+      aria-invalid={false}
+      className="MuiInputBase-input-64 MuiInput-input-49"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Testing SignUp page Testando styled do LoginWrapper 1`] = `
+<div
+  className="sc-bwzfXH hkytMV"
+/>
+`;
+
+exports[`Testing SignUp page Testando styled do Logo 1`] = `
+<img
+  className="sc-htpNat jVxcuk"
+/>
+`;
+
+exports[`Testing SignUp page Testando styled do SignUpHeader 1`] = `
+<div
+  className="sc-bZQynM lnzejl"
+/>
+`;

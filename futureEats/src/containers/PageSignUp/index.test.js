@@ -1,7 +1,8 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import { LoginWrapper, Logo, Create, Inputs, CreateButton } from './style';
+import { Form, LoginWrapper, Logo, Create, Inputs, CreateButton, SignUpHeader, Icon } from './style';
 import {PageSignUp} from './index'
+import renderer from 'react-test-renderer'
 
 
 describe ("Testing SignUp page", () => {
@@ -43,21 +44,46 @@ describe ("Testing SignUp page", () => {
         expect(renderedComponent.state().password).toEqual("test3")
 
     })
-    // test("handleSubmit", () => {
-    //     //preparação
-    //     const renderedComponent = shallow(<PageSignUp/>)
-    //     const event = {preventDefault(){}}
-    //     const findCreateButton = renderedComponent.find(CreateButton)
+    test("Testando styled do Form", () => {
+        const newSnapShot = renderer.create(<Form />).toJSON();
 
-    //     //execução
-    //     findCreateButton.simulate("click", event)
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do LoginWrapper", () => {
+        const newSnapShot = renderer.create(<LoginWrapper />).toJSON();
 
-    //     //verificação
-    //     expect(event).toHaveBeenCalledTimes(1)
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Logo", () => {
+        const newSnapShot = renderer.create(<Logo />).toJSON();
 
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Create", () => {
+        const newSnapShot = renderer.create(<Create />).toJSON();
 
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Inputs", () => {
+        const newSnapShot = renderer.create(<Inputs />).toJSON();
 
-    // })
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do CreateButton", () => {
+        const newSnapShot = renderer.create(<CreateButton />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do SignUpHeader", () => {
+        const newSnapShot = renderer.create(<SignUpHeader />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
+    test("Testando styled do Icon", () => {
+        const newSnapShot = renderer.create(<Icon />).toJSON();
+
+        expect(newSnapShot).toMatchSnapshot();
+    })
 })
 
 

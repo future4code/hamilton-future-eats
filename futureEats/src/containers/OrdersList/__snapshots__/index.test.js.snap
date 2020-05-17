@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing OrdersList Testando styled do ExpectedTime 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bZQynM fqBHxg"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do IfEmpty 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bwzfXH JavPS"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do OrderWrapper 1`] = `
+<div
+  className="sc-htpNat bxNEdj"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do OrdersListWrapper 1`] = `
+<div
+  className="sc-bdVaJa fzewCy"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do RestaurantAddress 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-EHOje eSgJgQ"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do RestaurantInfo 1`] = `
+<div
+  className="sc-bxivhb bWFbuY"
+/>
+`;
+
+exports[`Testing OrdersList Testando styled do RestaurantName 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-ifAKCX evfWjv"
+/>
+`;

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testando styled do Beverage 1`] = `
+<div
+  className="sc-iwsKbI eYLkvK"
+/>
+`;
+
+exports[`Testando styled do Delivery 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-EHOje bCOdrv"
+/>
+`;
+
+exports[`Testando styled do Details 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bZQynM lmPunN"
+/>
+`;
+
+exports[`Testando styled do MainMenu 1`] = `
+<div
+  className="sc-htoDjs Zziap"
+/>
+`;
+
+exports[`Testando styled do MenuTitle 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-gZMcBi kjrVwk"
+/>
+`;
+
+exports[`Testando styled do MenuWrapper 1`] = `
+<div
+  className="sc-gzVnrw cecYhM"
+/>
+`;
+
+exports[`Testando styled do RestaurantImg 1`] = `
+<img
+  className="sc-bxivhb blapSO"
+/>
+`;
+
+exports[`Testando styled do RestaurantInformation 1`] = `
+<div
+  className="sc-htpNat eJfEBg"
+/>
+`;
+
+exports[`Testando styled do RestaurantName 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-ifAKCX fuvCOZ"
+/>
+`;
+
+exports[`Testando styled do RestaurantPageWrapper 1`] = `
+<div
+  className="sc-bdVaJa dESAOU"
+/>
+`;
+
+exports[`Testando styled do SideDish 1`] = `
+<div
+  className="sc-dnqmqq eAskcY"
+/>
+`;
+
+exports[`Testando styled do Title 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bwzfXH hgvgHU"
+/>
+`;
