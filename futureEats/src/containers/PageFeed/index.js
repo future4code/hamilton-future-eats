@@ -84,16 +84,14 @@ class PageFeed extends React.Component {
 
     renderOptions = () => {
         const { restaurants } = this.props
-        let valueActiveOption = 0
 
         return (
-            restaurants.map(element => {
-                valueActiveOption += 1
-
+            restaurants.map( (element, index) => {
+                const indexActiveFilter = index + 2
                 return (
                     <OptionText
                         activeOption = {this.state.activeOption}
-                        onClick={() => this.handleFilter(element.category, valueActiveOption.value)}
+                        onClick={() => this.handleFilter(element.category, indexActiveFilter)}
                     >
                         {element.category}
                     </OptionText>
@@ -127,7 +125,6 @@ class PageFeed extends React.Component {
                     {(this.props.restaurants) && this.renderRestaurants()}
                 </ContentWrapper>
                 <Snackbar
-                
                 />
                 <Footer />
             </FeedWrapper>

@@ -2,7 +2,6 @@ import axios from 'axios'
 import { routes } from "../containers/Router"
 import { push } from "connected-react-router"
 
-
 const getToken = () => localStorage.getItem("token");
 const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
@@ -38,12 +37,13 @@ export function setOrdersHistory(ordersHistory){
 
 //Assíncrona
 export const placeOrder = (ordersToPlace, restaurantId) => async (dispatch) => {
-    
+    const token = localStorage.getItem("token");
     try {
         await axios.post(
-            `${baseUrl}/restaurants/${restaurantId}/order`, ordersToPlace, {
+            `${baseUrl}/restaurants/${restaurantId}/order`, 
+            ordersToPlace, {
                 headers: {
-                    auth: getToken,
+                    auth: token,
                 }
             }
         )
@@ -51,7 +51,6 @@ export const placeOrder = (ordersToPlace, restaurantId) => async (dispatch) => {
         dispatch(push(routes.feed))
     } catch (error) {
         console.error(error)
-        console.log(ordersToPlace)
     }
 }
 

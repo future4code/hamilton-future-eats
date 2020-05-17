@@ -61,11 +61,11 @@ export class PageCart extends React.Component {
             products: 
             this.props.orders.map(order => (
                     {
-                    id: order.id,
-                    quantity: order.quantity,
+                    "id": order.id,
+                    "quantity": order.quantity
                 }
                 )),
-            paymentMethod: this.state.paymentMethod
+            "paymentMethod": this.state.paymentMethod
         }  
         this.props.placeOrder(ordersToPlace, this.props.restaurantDetail.id)
     }
@@ -74,8 +74,6 @@ export class PageCart extends React.Component {
     render() {
         const { orders, restaurantDetail, userAddress } = this.props
         const { subTotalPrice } = this.state
-
-            console.log(userAddress)
 
         return (
             <CartWrapper>
