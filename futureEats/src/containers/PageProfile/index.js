@@ -60,8 +60,9 @@ export class PageProfile extends React.Component {
 
     render() {
         const { user, ordersHistory } = this.props
-        console.log('estamos aqui')
-        console.log(ordersHistory)
+      
+        console.log(ordersHistory);
+        
         return (
             <ProfileWrapper>
                 <ProfileHeader>

@@ -11,6 +11,13 @@ export const ProductWrapper = styled.div`
     display:grid;
     grid-template-rows: 120px 1fr;
     
+    opacity: 1;
+    transition: opacity 0.5s;
+    
+    :active {
+        background-color: #000000;
+        opacity: 0.5;
+    }
 `
 
 export const ImageWrapper = styled.div`
