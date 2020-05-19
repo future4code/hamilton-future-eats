@@ -9,8 +9,12 @@ import SearchBar from "../SearchBar"
 import { replace } from 'connected-react-router';
 import { routes } from "../Router"
 import { getRestaurantDetail } from '../../actions/restaurants'
-import OrderSnackBar from "../OrderSnackbar"
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 
+function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
+  }
 
 class PageFeed extends React.Component {
     constructor(props) {
@@ -18,7 +22,9 @@ class PageFeed extends React.Component {
         this.state = {
             search: "",
             currentFilter: false,
-            activeOption: 1,
+            activeOption: 2,
+            open: false,
+            Transition: null,
         }
     }
 
@@ -29,6 +35,10 @@ class PageFeed extends React.Component {
         }
         this.props.getRestaurants();
         this.props.setCurrentPage(1);
+
+        if(this.props.activeOrder[0]){
+        this.showSnackBar(TransitionUp)
+        }
     }
 
     showSnackBar = Transition => () => {
@@ -83,6 +93,7 @@ class PageFeed extends React.Component {
                         activeOption = {this.state.activeOption}
 
                         onClick={() => this.handleFilter(element.category, indexActiveFilter)}
+
                     >
                         {element.category}
                     </OptionText>
@@ -109,15 +120,14 @@ class PageFeed extends React.Component {
                     <SearchBar/>
                 </div>
                 <NavBar>
-                    <OptionText onClick={() => this.handleFilter(false, 1)}>Todos</OptionText>
+                    <OptionText onClick={() => this.handleFilter(false)}>Todos</OptionText>
                     {this.renderOptions()}
                 </NavBar>
                 <ContentWrapper>
                     {(this.props.restaurants) && this.renderRestaurants()}
                 </ContentWrapper>
-                {/* <OrderSnackBar/> */}
-
-
+                <Snackbar
+                />
                 <Footer />
             </FeedWrapper>
         )

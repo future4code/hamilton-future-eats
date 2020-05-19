@@ -64,7 +64,7 @@ export const getActiveOrder = () => async (dispatch) => {
                 }
             }
         )
-        dispatch(setActiveOrder(response.data.order))
+        // dispatch(setActiveOrder(response.data.order))
     } catch (error) {
         console.error(error)
     }

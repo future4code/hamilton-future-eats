@@ -56,5 +56,3 @@ export const App = () => (
 );
 
 export default App;
-
-//projeto-final-hamilton-future-eats.surge.sh
