@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testando styled do ContentWrapper 1`] = `
+<div
+  className="sc-EHOje dfZaHS"
+/>
+`;
+
+exports[`Testando styled do FeedWrapper 1`] = `
+<div
+  className="sc-bdVaJa cBeEWh"
+/>
+`;
+
+exports[`Testando styled do Logo 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-htpNat hGNebm"
+/>
+`;
+
+exports[`Testando styled do LogoWrapper 1`] = `
+<div
+  className="sc-bwzfXH dxaQdq"
+/>
+`;
+
+exports[`Testando styled do NavBar 1`] = `
+<div
+  className="sc-bxivhb gzmmVO"
+/>
+`;
+
+exports[`Testando styled do OptionText 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-ifAKCX bmRnqm"
+/>
+`;

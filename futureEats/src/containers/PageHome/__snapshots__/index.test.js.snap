@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testando styled do HomeWrapper 1`] = `
+<div
+  className="sc-bdVaJa boudFt"
+/>
+`;
+
+exports[`Testando styled do Logo 1`] = `
+<img
+  className="sc-bwzfXH lgUqlB"
+/>
+`;

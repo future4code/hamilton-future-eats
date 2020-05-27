@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing PageAddressRegistration Testando styled do AdressHeader 1`] = `
+<div
+  className="sc-htpNat hFenuF"
+/>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do BackIcon 1`] = `
+<svg
+  className="sc-bZQynM ggdgFL"
+  fill="currentColor"
+  height="1em"
+  stroke="currentColor"
+  strokeWidth="0"
+  style={
+    Object {
+      "color": undefined,
+    }
+  }
+  viewBox="0 0 256 512"
+  width="1em"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
+  />
+</svg>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do Form 1`] = `
+<form
+  className="sc-bdVaJa jTWtvb"
+/>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do Inputs 1`] = `
+<div
+  className="MuiFormControl-root-37 sc-ifAKCX hrNALZ"
+>
+  <div
+    className="MuiInputBase-root-54 MuiInput-root-41 MuiInput-underline-45 MuiInputBase-formControl-55 MuiInput-formControl-42"
+    onClick={[Function]}
+  >
+    <input
+      aria-invalid={false}
+      className="MuiInputBase-input-64 MuiInput-input-49"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do LoginWrapper 1`] = `
+<div
+  className="sc-bwzfXH hkytMV"
+/>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do MyAddress 1`] = `
+<p
+  className="MuiTypography-root-1 MuiTypography-body1-10 sc-bxivhb gDOFHL"
+/>
+`;
+
+exports[`Testing PageAddressRegistration Testando styled do SaveButton 1`] = `
+<button
+  className="MuiButtonBase-root-97 MuiButton-root-71 MuiButton-text-73 MuiButton-flat-76 sc-EHOje kNLaCc"
+  disabled={false}
+  onBlur={[Function]}
+  onContextMenu={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="0"
+  type="button"
+>
+  <span
+    className="MuiButton-label-72"
+  />
+  <span
+    className="MuiTouchRipple-root-100"
+  />
+</button>
+`;
